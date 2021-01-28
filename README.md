@@ -1,5 +1,87 @@
 # Data Lovers
 
+
+## Definicion del producto
+Los usuarios son jugadores de PokemonGo por medio de esta app queremos brindarles
+un espacio donde podran visualizar todos los pokemones con sus caracteristicas,
+además podran filtrar informacion ya sea por tipo, por top de aparicion, organizarla de más fuerte a menos, alfabeticamente, hacer busqueda por nombre.
+
+
+## Historias de Usuario
+
+  ### Historia usuario 1:
+**Problema del usuario:**
++ Yo como maestro pokemon quiero poder ver la Información básica de los pokemons para poder conocer que habilidades tiene
+**Criterios de aceptación:**
++ Que el usuario pueda ver información básica de los
+ pokemons (nombre, tipo, etc)
++  Diseño responsive
+**Definicion de Terminado**
++ Responsive en 3 breackpoints (movile, desktop, tablet)
++ Utilizar contraste y jeraquia.
+  ### Historia de usuario 2:
+**Problema del usuario:**
++  Yo como maestro pokemon quiero poder organizar la información por multiplicador para ver quien es más fuerte y quien menos.
+**Criterios de aceptación:**
++ Que el usuario pueda consultar la información de los pokemons por su multiplicador
++ ordenar de mas fuerte a menos fuerte
++ ordenar de menos fuerte a mas fuerte
++ Diseño responsive
+**Definicion de terminado**
++ Pasar test de la funcion
++ Resposive en 3 breackpoints
+  ### Historia de usuario 3:
+**Problema del usuario:**
++  Yo como maestro pokemon quiero  visualizar la información por top de apariciones de Pokemon.
+**Criterios de aceptación:**
++ mostrar pokemons con mas apariciones.
++ Top de 10
++ Diseño responsive.
+**Definicion de terminado**
++ Pasar test de la funcion filtrar por peso.
++ realizar prueba con usuario y ver si es satisfactoria la experiencia.
++ Responsive en los 3 principales breackpoint
+  ### Historia de usuario 4:
+**Problema del usuario:**
++ Yo como usuario quiero poder organizar la información por tipo de Pokemon para poder optimizar mi búsqueda
+**Criterios de aceptación:**
++ Que el usuario pueda consultar la información de los pokemons al filtrarlo por tipo.
++ Que pueda seleccionarlo a través de un Selector de filtros.
++ Mostrar solo los pokemons que tengan el mismo tipo.
+**Criterios de aceptación:**
++ Pasar todos los tests de usabilidad
++ Pasar los tests de node
++ Tener el visto bueno de los usuarios
++ Responsive en 3 dispositivos.
+  ### Historia de usuario 5:
+  **Problema de usuario:**
++  Yo como maestro pokemon quiero poder encontrar un pokemon por su nombre para optimizar mi busqueda.
+**Criterios de aceptación**
++ Agregar un input text donde escriba el nombre del pokemon
++  Filltrar al pokemon que tenga coincidencia
++ Si no hay coincidencias mostrar un mensaje de que no existe
+**Definicion de Terminado**
++ Pasar test
++ Diseño responsive en los 3 principales breackpoint.
+  ### Historia de usuario 6:
+
+**problemática:**
++ Yo como maestro pokemon quiero poder ordenar de manera  alfabética los pokemones para hacer una busqueda mas
+**Criterios de aceptación**
++ Que el usuario pueda seleccionar el orden a través de un selector
++ Que los pokemons se filtren de la a-Z y de la Z-a
+
+
+***
+## Prototipos
+![prototipo](./assets/prototipo.jpeg)
+![prototipo-mobile](./assets/prototipoMobile.png)
+![prototipo2](./assets/prototipo2.png)
+![prototipo3](./assets/prototipo3.png)
+![prototipo4](./assets/prototipo4.png)
+
+
+***
 ## Índice
 
 * [1. Preámbulo](#1-preámbulo)
