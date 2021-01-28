@@ -5,15 +5,17 @@
   <meta charset="utf-8">
   <title>Data Lovers</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-  <div id="root">
 
-    <header>
-      <nav>
+    <header class="header-container">
+      <nav class="nav-container">
         <h1 class="title">PokeDex</h1>
-        <ul>
+        <ul class="list-container">
           <li>Pokemon</li>
           <li>TOP 10</li>
         </ul>
@@ -21,11 +23,13 @@
 
     </header>
 
-    <section>
+    <section class="search-container">
 
-      <input type="text">
-      <select type="text">
-        <option value="value1">Value 1</option>
+      <input type="text" class="input-search" placeholder="Buscar">
+      <select type="text" class="input-search">
+        <option value="value1">Categoría</option>
+        <option value="value2">A-Z</option>
+          <option value="value3">mas fuerte </option>
       </select>
 
 
@@ -34,14 +38,17 @@
 
     <main class="mainPokemon">
 
-      <div class="modal hide">
+      
 
+        <!--
+                        MODAL
+                        <section class="modal hide">
           <div>
-            <div>001</div> 
+            <div>001</div>
             <div>
-              <img src="" alt=""> 
+              <img src="" alt="">
             <h1 id="namePokemon" class="namePokemon">Name</h1>
-            </div> 
+            </div>
             <div>
               <h2>HP</h2>
               <p id="valueHP" class="input">Value hp</p>
@@ -50,68 +57,63 @@
             </div>
             <div>
               <h3>Generación</h2>
-              <p id="gen" class="input">Value hp</p> 
+              <p id="gen" class="input">Value hp</p>
               <p id="genDos" class="input">Value cp</p>
-            </div> 
-          </div> 
-
+            </div>
+          </>
           <div>
             <h1>Información básica</h1>
             <h3>Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up
               the sun's rays, the seed grows progressively larger.</h3>
 
-              <h2>Tamaño</h2> 
+              <h2>Tamaño</h2>
               <p id="height" class="input">Tamaño</p>
-              <h2>Peso</h2> 
+              <h2>Peso</h2>
               <p id="weight" class="input">Tamaño</p>
-              <h2>Rareza</h2> 
-              <p id="rarity" class="input">Tamaño</p> 
+              <h2>Rareza</h2>
+              <p id="rarity" class="input">Tamaño</p>
 
-              <h2>Resistente contra:</h2> 
-              <p id="weight" class="input">Tamaño</p> 
+              <h2>Resistente contra:</h2>
+              <p id="weight" class="input">Tamaño</p>
 
-              <h2>Debil contra:</h2> 
-              <p id="weight" class="input">Tamaño</p> 
+              <h2>Debil contra:</h2>
+              <p id="weight" class="input">Tamaño</p>
 
-              <h2>Próximas evoluciones:</h2> 
+              <h2>Próximas evoluciones:</h2>
               <img src="" alt="">
-              <p id="name" class="input">Nombre</p> 
+              <p id="name" class="input">Nombre</p>
 
               <img src="" alt="">
-              <p id="name" class="input">Nombre</p> 
+              <p id="name" class="input">Nombre</p>
 
           </div>
+        </section>
 
-
-
-
-
-
-      </div>
+-->
 
       <section>
 
-        <article class="cardContrainer">
-          <div>001</div> 
-          
-          <div>
-            <img src="" alt=""> 
+        <article class="card-contrainer">
+          <p class="id-number">001</p>
+          <section class="name-card_container">
+            <img src="" alt="">
           <h1 id="namePokemon" class="namePokemon">Name</h1>
-          </div>
+          </section>
+            <section class="info-card_container">
+            <div class="column">
+              <h2>HP</h2>
+              <p id="valueHP" class="input">Value hp</p>
+              <h2>CP</h2>
+              <p id="valueCP" class="input">Value cp</p>
+              </div>
+              <div class="column">
+                <h3 class="input">Tipo1</h3>
+                <h3 class="input">Tipo2</h3>
+              </div>
 
-          <div>
-            <h2>HP</h2>
-            <p id="valueHP" class="input">Value hp</p>
-            <h2>CP</h2>
-            <p id="valueCP" class="input">Value cp</p>
-          </div>
+            </section>
 
-          <div>
-            <h3 class="input">Tipo1</h3>
-            <h3 class="input">Tipo2</h3>
-          </div>  
-
-        </article>
+          </article>
 
 
 
@@ -121,7 +123,7 @@
 
 
 
-  </div>
+
   <script src="main.js" type="module"></script>
 </body>
 
