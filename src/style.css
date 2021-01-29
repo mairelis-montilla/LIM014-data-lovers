@@ -24,7 +24,6 @@
   margin-bottom:20px;
 }
 .nav-container{
-  margin: 6px;
   padding: 6px;
   display: flex;
   justify-content: space-between;
@@ -60,12 +59,18 @@ ul>li{
   background-color: white;
 
 }
+.mainPokemon{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+}
 .card-contrainer{
-margin: 20px 16px;
+margin: 20px ;
 border: 2px solid black;
 border-radius: 20px;
-width: 25vw;
-height: 25vw;
+width: 300px;
+height: 250px;
 display: flex;
 justify-content: space-between;
 flex-direction: column;
@@ -89,13 +94,13 @@ flex-direction: column;
   display: flex;
   flex-direction:row;
   justify-content: center;
-  padding: 10px;
-  margin: 4px 10px;
+  margin: 4px;
 
 
 }
 .input{
-  width: 85px;
+  font-size: 15px;
+  width: 90px;
   height: 35px;
   text-align: center;
   margin: 10px;
@@ -105,12 +110,12 @@ flex-direction: column;
 
 }
 .id-number{
-  margin:16px ;
+  margin:10px ;
   background-color: #FFDE00 ;
   border-bottom: 1px solid black;
   border-radius: 50%;
-  width: 40px;
-  height: 50px;
+  width: 38px;
+  height: 66px;
   display: flex;
   justify-content: center;
   align-items: center
@@ -124,6 +129,10 @@ flex-direction: column;
 }
   .nav-container{
   flex-direction: column;
+
+}
+ul>li{
+  font-size: 20px;
 }
 .search-container{
   height: 15vh;
@@ -131,6 +140,10 @@ flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.mainPokemon{
+justify-content: center;
+}
+
 .input-search{
   width: 65vw;
   height: 10vh;
