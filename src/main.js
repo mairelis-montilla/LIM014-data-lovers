@@ -1,13 +1,10 @@
-import {
-  example
-} from './data.js';
-// import data from './data/lol/lol.js';
-import data from './data/pokemon/pokemon.js';
+ import {example} from './data.js';
+// import data from './data/pokemon/pokemon.js';
 
 // import data from './data/rickandmorty/rickandmorty.js';
 
 // traer data
-fetch('/data/pokemon/pokemon.json')
+fetch('./data/pokemon/pokemon.json')
 
   .then(response => response.json())
   .then(pokemons => {
@@ -15,7 +12,7 @@ fetch('/data/pokemon/pokemon.json')
   });
 
 
-// Primera función 
+// Primera función
 function getAllPokemon(pokemons) {
   for (let pokemon of pokemons) {
 
@@ -59,8 +56,7 @@ function getAllPokemon(pokemons) {
               </article>
             </section>
             </section>
-            
-                  
+
                     `
 
 
