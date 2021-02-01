@@ -1,39 +1,44 @@
- import {example} from './data.js';
-// import data from './data/pokemon/pokemon.js';
+ import {
+   example
+ } from './data.js';
+ // import data from './data/pokemon/pokemon.js';
 
-// import data from './data/rickandmorty/rickandmorty.js';
+ // import data from './data/rickandmorty/rickandmorty.js';
 
-// traer data
-fetch('./data/pokemon/pokemon.json')
+ // traer data
+ fetch('./data/pokemon/pokemon.json')
 
-  .then(response => response.json())
-  .then(pokemons => {
-    getAllPokemon(pokemons.pokemon);
-  });
+   .then(response => response.json())
+   .then(pokemons => {
+     getAllPokemon(pokemons.pokemon);
+   });
 
 
-// Primera función
-function getAllPokemon(pokemons) {
-  for (let pokemon of pokemons) {
+ // Primera función
+ function getAllPokemon(pokemons) {
+   for (let pokemon of pokemons) {
 
-    let arrayPokemon = [];
+     let arrayPokemon = [];
 
-    if (pokemon.num <= "030") {
-      arrayPokemon.push({
-        NUM: pokemon.num,
-        NAME: pokemon.name,
-        HP: pokemon.stats["max-hp"],
-        CP: pokemon.stats["max-cp"],
-        IMG: pokemon.img,
-      })
+     if (pokemon.num <= "030") {
+       arrayPokemon.push({
+         NUM: pokemon.num,
+         NAME: pokemon.name,
+         HP: pokemon.stats["max-hp"],
+         CP: pokemon.stats["max-cp"],
+         IMG: pokemon.img,
+         TYPE: pokemon.type,
+       })
 
-      console.log(arrayPokemon);
+       console.log(arrayPokemon);
 
-    }
+     }
 
-    const cardContainer = document.getElementById("mainPokemon");
+     const cardContainer = document.getElementById("mainPokemon"); 
 
-    cardContainer.innerHTML += `
+
+
+     cardContainer.innerHTML += `
 
     <section id="pokemon-card-contrainer">
     <article class="card-contrainer">
@@ -49,19 +54,18 @@ function getAllPokemon(pokemons) {
               <h2>CP</h2>
               <p id="valueCP" class="input">${arrayPokemon[0].CP}</p>
               </div>
-              <div class="column">
-                <h3 class="input">Tipo1</h3>
-                <h3 class="input">Tipo2</h3>
+              <div class="column" id="types"> 
+              <h3 class="input">${arrayPokemon[0].TYPE[0]}</h3>
+              <h3 class="input">${arrayPokemon[0].TYPE[1]}</h3>
+
+
               </div>
               </article>
             </section>
             </section>
 
-                    `
+                    ` 
 
 
-
-
-
-  }
-}
+   }
+ }
