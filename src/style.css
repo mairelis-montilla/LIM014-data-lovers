@@ -123,16 +123,16 @@ cursor: pointer;
 
 }
 .id-number{
-  margin:10px ;
-  background-color: #FFDE00 ;
+  margin: 10px;
+  background-color: #FFDE00;
   border-bottom: 1px solid black;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  position: absolute;
+  width: 38px;
+  height: auto;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  padding: 10px;
 }
 
 @media screen and (max-width: 550px) and (min-width: 270px){
