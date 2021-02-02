@@ -37,9 +37,10 @@
   justify-content: space-evenly;
 
 }
-ul>li{
+.list{
   margin:0 20px;
   font-size: 30px;
+  cursor: pointer;
 }
 .title{
   font-weight: 800;;
@@ -65,23 +66,32 @@ flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
 }
+.container-pokemon{
+  margin:10px auto;
+  display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+}
 .card-contrainer{
 margin: 20px ;
+background: linear-gradient(180deg, #FFFFFF 0%, #93EF9D 46.35%, #98D59F 100%);
 border: 2px solid black;
 border-radius: 20px;
-width: 300px;
-height: 250px;
+width: 350px;
+height: 300px;
 display: flex;
 justify-content: space-between;
 flex-direction: column;
+cursor: pointer;
 }
 .name-card_container{
   padding: 5px;
   display: flex;
-  height: 20vh;
+  height:175px;
   text-align: center;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 }
 .info-card_container{
   border-top: 1px solid black;
@@ -109,16 +119,22 @@ flex-direction: column;
   border: 1px solid black;
 
 }
+.image-pokemon{
+  width: 120px;
+
+}
 .id-number{
-  margin:10px ;
-  background-color: #FFDE00 ;
+  margin: 10px;
+  background-color: #FFDE00;
   border-bottom: 1px solid black;
   border-radius: 50%;
-  width: 38px;
-  height: 66px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  padding: 10px;
+  position: absolute;
 }
 
 @media screen and (max-width: 550px) and (min-width: 270px){
@@ -131,7 +147,7 @@ flex-direction: column;
   flex-direction: column;
 
 }
-ul>li{
+.list{
   font-size: 20px;
 }
 .search-container{
@@ -142,6 +158,7 @@ ul>li{
 }
 .mainPokemon{
 justify-content: center;
+margin: 10px auto;
 }
 
 .input-search{
