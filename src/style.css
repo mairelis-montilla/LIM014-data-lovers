@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  text-transform: capitalize;
 }
 
 
@@ -22,11 +23,21 @@
   display: flex;
   justify-content: space-evenly;
   margin-bottom:20px;
+  text-align: center;
 }
 .nav-container{
   padding: 6px;
   display: flex;
   justify-content: space-between;
+}
+
+label{
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+
 }
 .list-container{
   font-weight: bold;
@@ -51,7 +62,7 @@
 
 .input-search{
   margin: 5px;
-  width: 38vw;
+  width: 20vw;
   height: 6vh;
   border: 1px solid black;
   border-radius: 10px;
@@ -140,7 +151,7 @@ cursor: pointer;
 @media screen and (max-width: 550px) and (min-width: 270px){
 
 .header-container{
-  height: 15vh;
+  height: 16vh;
   text-align: center;
 }
   .nav-container{
@@ -151,7 +162,7 @@ cursor: pointer;
   font-size: 20px;
 }
 .search-container{
-  height: 15vh;
+  height: 30vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
