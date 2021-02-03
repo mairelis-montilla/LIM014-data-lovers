@@ -3,7 +3,7 @@
 export const filterData = (data, condition) => { 
 
 
-  return data.filter(dataFilter => dataFilter.type == condition);
+  return data.filter(dataFilter => dataFilter.type.includes(condition));
 
 };
 

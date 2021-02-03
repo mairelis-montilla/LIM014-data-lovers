@@ -4,20 +4,15 @@ import data from './data/pokemon/pokemon.js';
 
 
 const pokemonData = data.pokemon;
+const categories = document.querySelector(`[id="category"]`);
+const cardContainer = document.getElementById("mainPokemon"); 
 
-let categories = document.querySelector(`[id="category"]`);
-categories.addEventListener(`change`, (e) => {
-  // log(`e.target`, e.target);
-  const select = e.target;
-  const value = select.value; 
-
-  let pokemonfiltrado = filterData(pokemonData, value);
-
-  pokemonfiltrado.forEach(pokemon => {
-
-    const cardContainer = document.getElementById("mainPokemon");
   
-    cardContainer.innerHTML += `
+// MOSTRAR TODOS LOS POKEMONS
+
+let showAllPokemon = (allPokemon) => { 
+  allPokemon.forEach(pokemon => { 
+  cardContainer.innerHTML += `
   <section class="card-contrainer" id="pokemon-card-contrainer">
   <article  >
   <p class="id-number">${pokemon.num}</p>
@@ -43,11 +38,30 @@ categories.addEventListener(`change`, (e) => {
           </section>
                   `;
   
-  });
+  })  
+}; 
 
-  console.log(filterData(pokemonData, value));
-
-}); 
-
+// PARA MOSTRAR TODOS LOS POKEMONS AL INICIO
+showAllPokemon(pokemonData); 
  
+categories.addEventListener(`change`, (e) => {
+  // log(`e.target`, e.target);
+  const select = e.target;
+  const value = select.value; 
+
+  if (value == "all") {
+    cardContainer.innerHTML = "";
+    showAllPokemon(pokemonData);
+    console.log("entró all");
+  }
+  else {
+
+    cardContainer.innerHTML = "";
+    showAllPokemon(filterData(pokemonData, value));
+    console.log("entró");
+
+  } 
+
+   
+});
 
