@@ -15,7 +15,7 @@ const cardContainer = document.getElementById("mainPokemon");
 let showAllPokemon = (allPokemon) => { 
   allPokemon.forEach(pokemon => { 
   cardContainer.innerHTML += `
-  <section class="card-contrainer" id="pokemon-card-contrainer">
+  <section class="card-contrainer ${pokemon.type[0]}" id="pokemon-card-contrainer">
   <article  >
   <p class="id-number">${pokemon.num}</p>
         <section class="name-card_container">
