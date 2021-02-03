@@ -5,6 +5,8 @@ import data from './data/pokemon/pokemon.js';
 
 const pokemonData = data.pokemon;
 const categories = document.querySelector(`[id="category"]`);
+const orderBy = document.querySelector(`[id="order"]`);
+
 const cardContainer = document.getElementById("mainPokemon"); 
 
   
@@ -55,11 +57,29 @@ categories.addEventListener(`change`, (e) => {
     console.log("entró all");
   }
   else {
-
     cardContainer.innerHTML = "";
     showAllPokemon(filterData(pokemonData, value));
     console.log("entró");
+  } 
 
+   
+});
+
+
+orderBy.addEventListener(`change`, (e) => {
+  // log(`e.target`, e.target);
+  const select = e.target;
+  const value = select.value; 
+
+  if (value == "all") {
+    cardContainer.innerHTML = "";
+    showAllPokemon(pokemonData);
+    console.log("entró all");
+  }
+  else {
+    cardContainer.innerHTML = "";
+    showAllPokemon(filterData(pokemonData, value));
+    console.log("entró");
   } 
 
    
