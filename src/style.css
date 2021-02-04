@@ -12,7 +12,6 @@
   color: white;
   width: 100vw;
   height: 12vh;
-
 }
 
 .search-container {
@@ -160,41 +159,48 @@ label {
   padding: 10px;
   position: absolute;
 }
-
-@media screen and (max-width: 550px) and (min-width: 270px) {
-
-  .header-container {
-    height: 16vh;
-    text-align: center;
-  }
-
-  .nav-container {
-    flex-direction: column;
-
-  }
-
-  .list {
-    font-size: 20px;
-  }
-
-  .search-container {
-    height: 30vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .mainPokemon {
-    justify-content: center;
-    margin: 10px auto;
-  }
-
-  .input-search {
-    width: 65vw;
-    height: 10vh;
-  }
+.mainHome{
+  width: 100vw;
+  height: 88vh;
+  background-image:url(/assets/background.jpeg);
+  background-size: cover;
+}
+.welcome-message{
+  position: absolute;
+  width: 100vw;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
+.slogan{
+  font-size: 70px;
+  color: white;
+}
+.btnPrimary{
+  width: 250px;
+  height: 100px;
+  border-radius: 15px;
+  border: 1px solid rgb(106, 160, 25);
+  background-color:rgb(106, 160, 25) ;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px;
+}
+.btnPrimary:hover{
+  background-color:rgb(149, 219, 45);
+  color: black;
+  transform: scale(1.1);
+}
+.btnPrimary:active{
+  transform: scale(1.5);
+}
+/* CLASES FONDOS DE CARDS*/
 .grass {
   background: linear-gradient(180deg, #FFFFFF 0%, #6EC47B 54.17%, #0D9222 100%, #0D9222 100%);
 }
@@ -253,21 +259,61 @@ label {
 }
 
 .psychic {
-
   background: linear-gradient(180deg, rgba(251, 240, 248, 0.97) 15.1%, rgba(133, 6, 97, 0.58) 58.85%, #E204A4 85.94%);
 }
 
 .rock {
   background: linear-gradient(180deg, #FFFEFD 14.06%, rgba(227, 170, 102, 0.85) 52.08%, #7A4200 83.85%);
 }
-
 .steel {
   background: linear-gradient(180deg, #FFFFFF 0%, #BBAFAF 48.44%, #5F5D5D 100%);
 }
-
 .water {
   background: linear-gradient(180deg, #FFFFFF 0%, #7885FF 52.6%, #052e63 100%);
 }
 .ground {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFB978 51.56%, #884200 100%);
 }
+
+/* BREAKPOINS MEDIA RESPONSIVE*/
+@media screen and (max-width: 550px) and (min-width: 270px) {
+
+  .header-container {
+    height: 16vh;
+    text-align: center;
+  }
+
+  .nav-container {
+    flex-direction: column;
+
+  }
+
+  .list {
+    font-size: 20px;
+  }
+
+  .search-container {
+    height: 30vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mainPokemon {
+    justify-content: center;
+    margin: 10px auto;
+  }
+
+  .input-search {
+    width: 65vw;
+    height: 10vh;
+  }
+  .slogan{
+    font-size: 40px;
+  }
+  .btnPrimary{
+    height: 50px;
+  }
+
+}
+
