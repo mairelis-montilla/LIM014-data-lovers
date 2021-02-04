@@ -26,10 +26,10 @@
 
   <section class="search-container">
 
-    <input type="text" class="input-search" placeholder="Buscar">
-    <label for="category"> Categorías: </label>
-    <select type="text" id="category" class="input-search">
-      <option value="all">All</option>
+    <input type="text" id="searchInput" class="input-search" placeholder="Buscar">
+    <label for="types"> Tipos: </label>
+    <select type="text" id="types" class="input-search">
+      <option value="all">Todos</option>
       <option value="bug">Bug</option>
       <option value="dark">Dark</option>
       <option value="dragon"> Dragon</option>
@@ -50,11 +50,34 @@
       <option value="water"> Water</option>
     </select>
 
+    <label for="region"> Región: </label>
+    <select type="text" id="region" class="input-search">
+      <option value="all">Todos</option> 
+      <option value="kanto">Kanto</option> 
+      <option value="johto">Johto</option> 
+    </select>
+
 
     <label for="order"> Orden: </label>
-    <select type="text" id="order"  class="input-search">
-      <option value="a-Z">a-Z</option>
-      <option value="Z-a">Z-a</option>
+    <select type="text" id="order" class="input-search">
+      <option value="all">Todos</option>
+      <optgroup label="Name">
+        <option value="nameAsc">a-Z</option>
+        <option value="nameDesc">Z-a</option>
+      </optgroup>
+      <optgroup label="Num">
+        <option value="numAsc">Asc</option>
+        <option value="numDesc">Desc</option>
+      </optgroup>
+      <optgroup label="CP">
+        <option value="cpAsc">Asc</option>
+        <option value="cpDesc">Desc</option>
+      </optgroup>
+      <optgroup label="HP">
+        <option value="hpAsc">Asc</option>
+        <option value="hpDesc">Desc</option>
+      </optgroup>
+
     </select>
 
 

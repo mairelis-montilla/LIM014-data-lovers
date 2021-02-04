@@ -1,16 +1,45 @@
 //import { example } from './data.js';
-import { filterData } from './data.js';
-import data from './data/pokemon/pokemon.js';
+import { 
+  
+  filterDataByType,
+  filterDataByName,
+  filterDataByRegion,
+  orderDataByName,
+  orderDataByNum,
+  orderDataByCP,
+  orderDataByHP } from './data.js';
+import data from './data/pokemon/pokemon.js'; 
 
 
 const pokemonData = data.pokemon;
-const categories = document.querySelector(`[id="category"]`);
+const searchInput = document.querySelector(`[id="searchInput"]`); 
+const showRegion = document.querySelector(`[id="region"]`);
+const showTypes = document.querySelector(`[id="types"]`);
+
 const orderBy = document.querySelector(`[id="order"]`);
 
 const cardContainer = document.getElementById("mainPokemon"); 
 
-  
-// MOSTRAR TODOS LOS POKEMONS
+
+let typeSelected;
+/*
+const showPokemonBasic = (allPokemon) => {
+  let basicPokemon = [];
+  allPokemon.forEach(pokemon => 
+    basicPokemon.push({
+      num: pokemon.num,
+      name: pokemon.name,
+      hp: pokemon.stats["max-hp"],
+      stats: pokemon.stats["max-cp"],
+      img: pokemon.img,
+      type: pokemon.type,
+      }))
+
+  return basicPokemon;
+}; */
+
+
+// MOSTRAR TODOS LOS POKEMONS 
 
 let showAllPokemon = (allPokemon) => { 
   allPokemon.forEach(pokemon => { 
@@ -41,47 +70,63 @@ let showAllPokemon = (allPokemon) => {
                   `;
   
   })  
+  return allPokemon;
 }; 
 
-// PARA MOSTRAR TODOS LOS POKEMONS AL INICIO
+// PARA MOSTRAR TODOS LOS POKEMONS AL INICIO //
 showAllPokemon(pokemonData); 
+///////////////////////////////////////////////
  
-categories.addEventListener(`change`, (e) => {
-  // log(`e.target`, e.target);
-  const select = e.target;
-  const value = select.value; 
+showTypes.addEventListener(`change`, () => { 
+  const value = showTypes.value;  
+  cardContainer.innerHTML = "";
+  typeSelected = document.querySelector(`[id="types"]`).value;
+  showAllPokemon(filterDataByType(filterDataByType(pokemonData, typeSelected), value));  
+});
+ 
+showRegion.addEventListener(`change`, () => { 
+  const value = showRegion.value;   
+  typeSelected = document.querySelector(`[id="types"]`).value;
+  cardContainer.innerHTML = "";
+  showAllPokemon(filterDataByRegion(filterDataByType(pokemonData, typeSelected), value));  
+});
+ 
 
-  if (value == "all") {
-    cardContainer.innerHTML = "";
-    showAllPokemon(pokemonData);
-    console.log("entró all");
-  }
-  else {
-    cardContainer.innerHTML = "";
-    showAllPokemon(filterData(pokemonData, value));
-    console.log("entró");
-  } 
+orderBy.addEventListener(`change`, () => { 
+  const value = orderBy.value;  
 
-   
+    cardContainer.innerHTML = "";
+    let data = filterDataByType(pokemonData, typeSelected);
+ 
+    if (value == "nameAsc" || value == "nameDesc") {
+      showAllPokemon(orderDataByName(data, value));  
+    }
+    else if (value == "numAsc" || value == "numDesc"){
+      showAllPokemon(orderDataByNum(data, value));  
+    }
+    else if (value == "cpAsc" || value == "cpDesc"){
+      showAllPokemon(orderDataByCP(data, value));  
+    }
+    else if (value == "hpAsc" || value == "hpDesc"){
+      showAllPokemon(orderDataByHP(data, value));  
+    }
+    else {
+      showAllPokemon(pokemonData);
+    }
+    console.log("value = " + value + " typeSelected = "+ typeSelected); 
 });
 
+// Busqueda 
+searchInput.addEventListener('input', () => {
 
-orderBy.addEventListener(`change`, (e) => {
-  // log(`e.target`, e.target);
-  const select = e.target;
-  const value = select.value; 
+const pokemonSearch = filterDataByName(pokemonData, searchInput.value.toLowerCase());
 
-  if (value == "all") {
-    cardContainer.innerHTML = "";
-    showAllPokemon(pokemonData);
-    console.log("entró all");
-  }
-  else {
-    cardContainer.innerHTML = "";
-    showAllPokemon(filterData(pokemonData, value));
-    console.log("entró");
-  } 
+if (pokemonSearch.length == 0){
+  cardContainer.innerHTML = "Pokemon no encontrado";
+}
+else {
+  cardContainer.innerHTML = '';
+  showAllPokemon(pokemonSearch);
+}
 
-   
-});
-
+})
