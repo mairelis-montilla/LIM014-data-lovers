@@ -226,7 +226,7 @@ label {
 
 .fire {
   background: linear-gradient(120deg, #FFFFFF 0%, #FB8290 48.96%, #FF0000 98.44%);
-} 
+}
 
 .ghost {
   background: linear-gradient(180deg, #FFFFFF 0%, #C67DFF 48.96%, #620CA7 92.19%);
@@ -262,11 +262,11 @@ label {
 }
 
 .steel {
-  background: linear-gradient(120deg, #FFFFFF 0%, #93EF9D 46.35%, #98D59F 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #BBAFAF 48.44%, #5F5D5D 100%);
 }
 
 .water {
-  background: linear-gradient(180deg, #FFFFFF 0%, #7885FF 52.6%, #0018FF 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #7885FF 52.6%, #052e63 100%);
 }
 .ground {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFB978 51.56%, #884200 100%);
