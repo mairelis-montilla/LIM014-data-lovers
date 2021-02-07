@@ -26,9 +26,11 @@
 }
 
 .nav-container {
+  height: 80px;
   padding: 6px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 label {
@@ -113,20 +115,22 @@ label {
 }
 
 .info-card_container {
+
   border-top: 1px solid black;
   height: 122px;
   background-color: #FF0000;
   border-radius: 0 0 18px 18px;
 
 }
+h2{
+  margin: 15px 5px;
 
+}
 .column {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 4px;
-
-
 }
 
 .input {
@@ -138,6 +142,8 @@ label {
   padding: 5px;
   border-radius: 15px;
   border: 1px solid black;
+  font-weight: bolder;
+  background-color: white;
 
 }
 
@@ -190,7 +196,7 @@ label {
   color: white;
   font-size: 30px;
   font-weight: bold;
-  margin: 10px;
+  margin: 15px;
 }
 .btnPrimary:hover{
   background-color:rgb(149, 219, 45);
@@ -198,7 +204,7 @@ label {
   transform: scale(1.1);
 }
 .btnPrimary:active{
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 /* CLASES FONDOS DE CARDS*/
 .grass {
@@ -228,10 +234,13 @@ label {
 }
 
 .fighting {
-  background: linear-gradient(120deg, #FFFFFF 0%, #FFD482 42.71%, #EAB54F 66.15%, #ED3F3F 96.35%);}
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFD482 42.71%, #EAB54F 66.15%, #ED3F3F 96.35%);}
 
 .fire {
-  background: linear-gradient(120deg, #FFFFFF 0%, #FB8290 48.96%, #FF0000 98.44%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FB8290 48.96%, #ee5b21 98.44%);
+}
+.flying{
+  background: linear-gradient(120deg, #FFFFFF 0%, #a3f5dc 46.35%, #32f5db 100%);
 }
 
 .ghost {
@@ -247,7 +256,7 @@ label {
 }
 
 .ice {
-  background: linear-gradient(180deg, #FFFFFF 0%, #7AF7FF 48.44%, #0FF1FF 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #2d979e 48.44%, #00c3d1 100%);
 }
 
 .normal {
@@ -255,7 +264,7 @@ label {
 }
 
 .poison {
-  background: linear-gradient(120deg, #FFFFFF 0%, #93EF9D 46.35%, #e1fb1c 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #9c81ac 47.57%, #543a63 100%);
 }
 
 .psychic {

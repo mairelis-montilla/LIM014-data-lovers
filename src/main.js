@@ -68,14 +68,14 @@ let showAllPokemon = (allPokemon) => {
         </section>
           <section class="info-card_container">
           <div class="column">
-            <h2>HP</h2>
+            <h2>HP:</h2>
             <p id="valueHP" class="input">${pokemon.stats['max-hp']}</p>
-            <h2>CP</h2>
+            <h2>CP:</h2>
             <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
             </div>
             <div class="column" id="types">
               ${pokemon.type.map(elemento => {
-      return `<h3 class="input"> ${elemento}</h3>`
+      return `<h3 class="input ${elemento}"> ${elemento}</h3>`
     })
       }
             </div>

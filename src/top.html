@@ -10,60 +10,79 @@
 <body>
   <div id="root">
 
-    <header>
-      <nav>
+    <header class="header-container">
+      <nav class="nav-container">
         <h1 class="title">PokeDex</h1>
-        <ul>
+        <ul class="list-container">
           <li class="list" id="listInicioTop">inicio</li>
           <li class="list" id="listPokemonTop">Pokemon</li>
         </ul>
       </nav>
-
     </header>
+      <section class="search-container">
 
-    <section>
-      <input type="text">
-      <select type="text">
-        <option value="value1">Value 1</option>
-      </select>
+        <input type="text" id="searchInput" class="input-search" placeholder="Buscar">
+        <label for="types"> Tipos: </label>
+        <select type="text" id="types" class="input-search">
+          <option value="all">Todos</option>
+          <option value="bug">Bug</option>
+          <option value="dark">Dark</option>
+          <option value="dragon"> Dragon</option>
+          <option value="electric">Electric</option>
+          <option value="fairy">Fairy</option>
+          <option value="fighting">Fighting</option>
+          <option value="fire">Fire</option>
+          <option value="flying">Flying</option>
+          <option value="ghost">Ghost</option>
+          <option value="grass">Grass</option>
+          <option value="ground">Ground</option>
+          <option value="ice">Ice</option>
+          <option value="normal">Normal</option>
+          <option value="poison">Poison</option>
+          <option value="psychic">Psychic</option>
+          <option value="rock">Rock</option>
+          <option value="steel">Steel</option>
+          <option value="water"> Water</option>
+        </select>
 
-    </section>
+        <label for="region"> Región: </label>
+        <select type="text" id="region" class="input-search">
+          <option value="all">Todos</option>
+          <option value="kanto">Kanto</option>
+          <option value="johto">Johto</option>
+        </select>
+        <label for="order"> Orden: </label>
+        <select type="text" id="order" class="input-search">
+          <option value="all">Todos</option>
+          <optgroup label="Name">
+            <option value="nameAsc">a-Z</option>
+            <option value="nameDesc">Z-a</option>
+          </optgroup>
+          <optgroup label="Num">
+            <option value="numAsc">Asc</option>
+            <option value="numDesc">Desc</option>
+          </optgroup>
+          <optgroup label="CP">
+            <option value="cpAsc">Asc</option>
+            <option value="cpDesc">Desc</option>
+          </optgroup>
+          <optgroup label="HP">
+            <option value="hpAsc">Asc</option>
+            <option value="hpDesc">Desc</option>
+          </optgroup>
+        </select>
+      </section>
 
 
     <main class="mainPokemon">
 
-      <section>
 
-        <article class="cardContrainer">
-
-          <div>001</div>
-
-          <div>
-            <img src="" alt="">
-            <h1 id="namePokemon" class="namePokemon">Name</h1>
-          </div>
-
-          <div>
-            <h2>HP</h2>
-            <p id="valueHP" class="input">Value hp</p>
-            <h2>CP</h2>
-            <p id="valueCP" class="input">Value cp</p>
-          </div>
-
-          <div>
-            <h3 class="input">Tipo1</h3>
-            <h3 class="input">Tipo2</h3>
-          </div>
-
-        </article>
-
-      </section>
 
     </main>
 
 
 
-  </div>
+
   <script src="top.js" type="module"></script>
 </body>
 
