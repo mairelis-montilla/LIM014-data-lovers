@@ -1,4 +1,3 @@
-
 import {
   filterDataByType,
   filterDataByName,
@@ -6,11 +5,10 @@ import {
   orderDataByName,
   orderDataByNum,
   orderDataByCP,
-  orderDataByHP
-} from './data.js';
-import data from './data/pokemon/pokemon.js';
+  orderDataByHP,
+} from './data';
 
-
+import data from './data/pokemon/pokemon';
 
 const pokemonData = data.pokemon;
 const searchInput = document.querySelector('#searchInput');
@@ -18,14 +16,8 @@ const showRegion = document.querySelector('#region');
 const showTypes = document.querySelector('[id="types"]');
 const orderBy = document.querySelector('[id="order"]');
 const cardContainer = document.getElementById('mainPokemon');
-
-
 const listIndexPokemon = document.getElementById('listIndexPokemon');
 const listTopPokemon = document.getElementById('listTopPokemon');
-
-
-
-
 
 let typeSelected;
 /*
@@ -44,7 +36,7 @@ const showPokemonBasic = (allPokemon) => {
   return basicPokemon;
 }; */
 
-//NAVEGACIÓN ENTRE PESTAÑAS
+// NAVEGACIÓN ENTRE PESTAÑAS //
 
 listIndexPokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
@@ -53,11 +45,10 @@ listTopPokemon.addEventListener('click', () => {
   window.location.assign('./top.html.html');
 });
 
-
 // MOSTRAR TODOS LOS POKEMONS
 
-let showAllPokemon = (allPokemon) => {
-  allPokemon.forEach(pokemon => {
+const showAllPokemon = (allPokemon) => {
+  allPokemon.forEach((pokemon) => {
     cardContainer.innerHTML += `
   <section class="card-contrainer ${pokemon.type[0]}" id="pokemon-card-contrainer">
   <article  >
@@ -74,73 +65,59 @@ let showAllPokemon = (allPokemon) => {
             <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
             </div>
             <div class="column" id="types">
-              ${pokemon.type.map(elemento => {
-      return `<h3 class="input ${elemento}"> ${elemento}</h3>`
-    })
-      }
+              ${pokemon.type.map((elemento) => `<h3 class="input ${elemento}"> ${elemento}</h3>`)}
             </div>
             </article>
           </section>
-          </section>
-                  `;
-
-  })
+          </section>`;
+  });
   return allPokemon;
 };
 
 // PARA MOSTRAR TODOS LOS POKEMONS AL INICIO //
 showAllPokemon(pokemonData);
-///////////////////////////////////////////////
 
 showTypes.addEventListener('change', () => {
-  const value = showTypes.value;
+  const { value } = showTypes;
   cardContainer.innerHTML = '';
   typeSelected = document.querySelector('[id="types"]').value;
-  showAllPokemon(filterDataByType(filterDataByType(pokemonData, typeSelected), value));
+  showAllPokemon((filterDataByType(pokemonData, typeSelected), value));
 });
 
 showRegion.addEventListener('change', () => {
-  const value = showRegion.value;
+  const { value } = showRegion;
   typeSelected = document.querySelector('[id="types"]').value;
   cardContainer.innerHTML = '';
   showAllPokemon(filterDataByRegion(filterDataByType(pokemonData, typeSelected), value));
 });
 
-
 orderBy.addEventListener('change', () => {
-  const value = orderBy.value;
+  const { value } = orderBy;
 
   cardContainer.innerHTML = '';
-  let data = filterDataByType(pokemonData, typeSelected);
+  const dataFilter = filterDataByType(pokemonData, typeSelected);
 
   if (value === 'nameAsc' || value === 'nameDesc') {
-    showAllPokemon(orderDataByName(data, value));
-  }
-  else if (value === 'numAsc' || value === 'numDesc') {
-    showAllPokemon(orderDataByNum(data, value));
-  }
-  else if (value === 'cpAsc' || value === 'cpDesc') {
-    showAllPokemon(orderDataByCP(data, value));
-  }
-  else if (value === 'hpAsc' || value === 'hpDesc') {
-    showAllPokemon(orderDataByHP(data, value));
-  }
-  else {
+    showAllPokemon(orderDataByName(dataFilter, value));
+  } else if (value === 'numAsc' || value === 'numDesc') {
+    showAllPokemon(orderDataByNum(dataFilter, value));
+  } else if (value === 'cpAsc' || value === 'cpDesc') {
+    showAllPokemon(orderDataByCP(dataFilter, value));
+  } else if (value === 'hpAsc' || value === 'hpDesc') {
+    showAllPokemon(orderDataByHP(dataFilter, value));
+  } else {
     showAllPokemon(pokemonData);
   }
 });
 
 // Busqueda
 searchInput.addEventListener('input', () => {
-
   const pokemonSearch = filterDataByName(pokemonData, searchInput.value.toLowerCase());
 
-  if (pokemonSearch.length == 0) {
+  if (pokemonSearch.length === 0) {
     cardContainer.textContent = 'Pokemon no encontrado';
-  }
-  else {
+  } else {
     cardContainer.innerHTML = '';
     showAllPokemon(pokemonSearch);
   }
-
-})
+});
