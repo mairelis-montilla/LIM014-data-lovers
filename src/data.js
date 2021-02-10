@@ -1,6 +1,6 @@
 // FILTRAR LOS DATOS POR TIPO
 export const filterDataByType = (data, condition) => {
-  if (condition == 'all') {
+  if (condition === 'all') {
     return data;
   } else {
     return data.filter(dataFilter => dataFilter.type.includes(condition));
@@ -9,7 +9,7 @@ export const filterDataByType = (data, condition) => {
 
 // FILTRAR LOS DATOS POR NOMBRE
 export const filterDataByName = (data, condition) => {
-  if (condition == 'all') {
+  if (condition === 'all') {
     return data;
   } else {
     return data.filter(dataFilter => dataFilter.name.includes(condition))
@@ -18,7 +18,7 @@ export const filterDataByName = (data, condition) => {
 
 // FILTRAR LOS DATOS POR REGIÓN
 export const filterDataByRegion = (data, condition) => {
-  if (condition == 'all') {
+  if (condition === 'all') {
     return data;
   } else {
     return data.filter(dataFilter => dataFilter.generation['name'].includes(condition))
@@ -31,7 +31,7 @@ export const filterDataByNum =(data, condition) =>{
 
 // MOSTRAR LOS DATOS POR ORDEN A-Z / Z-A
 export const orderDataByName = (data, condition) => {
-  if (condition == 'nameAsc') {
+  if (condition === 'nameAsc') {
     // 1 = b va antes que a // -1 = a va antes que b
     return data.sort((a, b) => (a.name > b.name) ? 1 : -1);
   }
@@ -43,7 +43,7 @@ export const orderDataByName = (data, condition) => {
 
 // MOSTRAR LOS DATOS POR ORDEN DE NÚMERO
 export const orderDataByNum = (data, condition) => {
-  if (condition == 'numAsc') {
+  if (condition === 'numAsc') {
     return data.sort((a, b) => a.num - b.num);
   }
   else {
@@ -53,7 +53,7 @@ export const orderDataByNum = (data, condition) => {
 
 // MOSTRAR LOS DATOS POR ORDEN DE CP
 export const orderDataByCP = (data, condition) => {
-  if (condition == 'cpAsc') {
+  if (condition === 'cpAsc') {
     return data.sort((a, b) => a.stats['max-cp'] - b.stats['max-cp']);
   }
   else {
@@ -63,7 +63,7 @@ export const orderDataByCP = (data, condition) => {
 
 // MOSTRAR LOS DATOS POR ORDEN DE HP
 export const orderDataByHP = (data, condition) => {
-  if (condition == 'hpAsc') {
+  if (condition === 'hpAsc') {
     return data.sort((a, b) => a.stats['max-hp'] - b.stats['max-hp']);
   }
   else {

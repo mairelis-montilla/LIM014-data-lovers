@@ -74,7 +74,7 @@ let showAllPokemon = (allPokemon) => {
             <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
             </div>
             <div class="column" id="types">
-              ${pokemon.type.map(elemento => {
+              ${pokemon.type.map((elemento) => {
       return `<h3 class="input ${elemento}"> ${elemento}</h3>`
     })
       }
