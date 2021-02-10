@@ -284,6 +284,46 @@ h2{
   background: linear-gradient(180deg, #FFFFFF 0%, #FFB978 51.56%, #884200 100%);
 }
 
+.hide {
+  display: none;
+}
+
+
+.modal{ 
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.6);
+  padding: 0 1.5rem; 
+}
+
+.modal > .modal-container{
+  background-color: #fff;
+  max-width: 500px;
+  padding: 2rem;
+  margin: 10vh auto;
+  border-radius: 10px; 
+}
+
+.modal > .modal-container > h1{ 
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif;  
+}
+
+.modal > .modal-container > p{
+  margin-top: 30px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif; 
+  line-height: 1.4;
+}
+
+
 /* BREAKPOINS MEDIA RESPONSIVE*/
 @media screen and (max-width: 550px) and (min-width: 270px) {
 
@@ -324,5 +364,5 @@ h2{
     height: 50px;
   }
 
-}
-
+}  
+ 

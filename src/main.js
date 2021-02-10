@@ -1,4 +1,3 @@
-
 import {
   filterDataByType,
   filterDataByName,
@@ -18,6 +17,22 @@ const showRegion = document.querySelector('#region');
 const showTypes = document.querySelector('[id="types"]');
 const orderBy = document.querySelector('[id="order"]');
 const cardContainer = document.getElementById('mainPokemon');
+
+
+/*
+const btnModal = document.getElementById('btnModal');  */
+const modalShow = document.getElementById('modal');
+/*
+btnModal.addEventListener('click', mostrarModal);   */
+
+
+const closeModal = document.getElementById('closeModal');
+closeModal.addEventListener('click', hideModal);
+
+function hideModal() {
+  modalShow.classList.toggle('hide');
+}
+
 
 
 const listIndexPokemon = document.getElementById('listIndexPokemon');
@@ -57,15 +72,16 @@ listTopPokemon.addEventListener('click', () => {
 // MOSTRAR TODOS LOS POKEMONS
 
 
+
+const modalContainer = document.querySelector('.modal-container');
+
+
 const showAllPokemon = (allPokemon) => {
-  allPokemon.forEach(pokemon => { 
+  allPokemon.forEach(pokemon => {
     const container = document.createElement('section');
     container.className = 'card-contrainer ' + pokemon.type[0];
- 
-    
     cardContainer.appendChild(container).innerHTML = `
-     
-    <article>
+    <article id="modal-${pokemon.num}">
     <p class="id-number">${pokemon.num}</p>
           <section class="name-card_container">
             <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}>
@@ -74,23 +90,42 @@ const showAllPokemon = (allPokemon) => {
             <section class="info-card_container">
             <div class="column">
               <h2>HP:</h2>
-              <p id="valueHP" class="input">${pokemon.stats['max-hp']}</p>
+              <p id="valueHP"  class="input">${pokemon.stats['max-hp']}</p>
               <h2>CP:</h2>
               <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
               </div>
               <div class="column" id="types">
                 ${pokemon.type.map(elemento => {
-        return `<h3 class="input ${elemento}"> ${elemento}</h3>`
+        return `<h3 class="input ${elemento}" > ${elemento}</h3>`
       })
         }
               </div>
+              <button>Cualquiera</button>
               </article>
             </section> 
-                    `;
+                     
+            `;
+    const btnModal = container.querySelector('button');
+    btnModal.addEventListener('click',
+      function mostrarModal() {
+        modalShow.classList.toggle('hide'); 
+        modalContainer.innerHTML =
+          `<h1>${pokemon.name}</h1>
+        <p>${pokemon.about}
+      
+        </p>
+        <p>
+         POKEMON
+
+          
+        </p>`
+      });
+
 
 
   })
 };
+
 
 // PARA MOSTRAR TODOS LOS POKEMONS AL INICIO //
 showAllPokemon(pokemonData);
@@ -98,7 +133,7 @@ showAllPokemon(pokemonData);
 
 showTypes.addEventListener('change', () => {
   const value = showTypes.value;
-  cardContainer.innerHTML = ''; 
+  cardContainer.innerHTML = '';
   showAllPokemon(filterDataByType(pokemonData, value));
 });
 
@@ -118,17 +153,13 @@ orderBy.addEventListener('change', () => {
 
   if (value === 'nameAsc' || value === 'nameDesc') {
     showAllPokemon(orderDataByName(data, value));
-  }
-  else if (value === 'numAsc' || value === 'numDesc') {
+  } else if (value === 'numAsc' || value === 'numDesc') {
     showAllPokemon(orderDataByNum(data, value));
-  }
-  else if (value === 'cpAsc' || value === 'cpDesc') {
+  } else if (value === 'cpAsc' || value === 'cpDesc') {
     showAllPokemon(orderDataByCP(data, value));
-  }
-  else if (value === 'hpAsc' || value === 'hpDesc') {
+  } else if (value === 'hpAsc' || value === 'hpDesc') {
     showAllPokemon(orderDataByHP(data, value));
-  }
-  else {
+  } else {
     showAllPokemon(pokemonData);
   }
 });
@@ -140,8 +171,7 @@ searchInput.addEventListener('input', () => {
 
   if (pokemonSearch.length == 0) {
     cardContainer.textContent = 'Pokemon no encontrado';
-  }
-  else {
+  } else {
     cardContainer.innerHTML = '';
     showAllPokemon(pokemonSearch);
   }
