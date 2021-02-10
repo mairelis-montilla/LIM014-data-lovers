@@ -50,42 +50,46 @@ listIndexPokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
 });
 listTopPokemon.addEventListener('click', () => {
-  window.location.assign('./top.html.html');
+  window.location.assign('./top.html');
 });
 
 
 // MOSTRAR TODOS LOS POKEMONS
 
-let showAllPokemon = (allPokemon) => {
-  allPokemon.forEach(pokemon => {
-    cardContainer.innerHTML += `
-  <section class="card-contrainer ${pokemon.type[0]}" id="pokemon-card-contrainer">
-  <article  >
-  <p class="id-number">${pokemon.num}</p>
-        <section class="name-card_container">
-          <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}>
-        <h1 id="namePokemon" class="namePokemon">${pokemon.name}</h1>
-        </section>
-          <section class="info-card_container">
-          <div class="column">
-            <h2>HP:</h2>
-            <p id="valueHP" class="input">${pokemon.stats['max-hp']}</p>
-            <h2>CP:</h2>
-            <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
-            </div>
-            <div class="column" id="types">
-              ${pokemon.type.map((elemento) => {
-      return `<h3 class="input ${elemento}"> ${elemento}</h3>`
-    })
-      }
-            </div>
-            </article>
+
+const showAllPokemon = (allPokemon) => {
+  allPokemon.forEach(pokemon => { 
+    const container = document.createElement('section');
+    container.className = 'card-contrainer ' + pokemon.type[0];
+ 
+    
+    cardContainer.appendChild(container).innerHTML = `
+     
+    <article>
+    <p class="id-number">${pokemon.num}</p>
+          <section class="name-card_container">
+            <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}>
+          <h1 id="namePokemon" class="namePokemon">${pokemon.name}</h1>
           </section>
-          </section>
-                  `;
+            <section class="info-card_container">
+            <div class="column">
+              <h2>HP:</h2>
+              <p id="valueHP" class="input">${pokemon.stats['max-hp']}</p>
+              <h2>CP:</h2>
+              <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
+              </div>
+              <div class="column" id="types">
+                ${pokemon.type.map(elemento => {
+        return `<h3 class="input ${elemento}"> ${elemento}</h3>`
+      })
+        }
+              </div>
+              </article>
+            </section> 
+                    `;
+
 
   })
-  return allPokemon;
 };
 
 // PARA MOSTRAR TODOS LOS POKEMONS AL INICIO //
@@ -94,9 +98,8 @@ showAllPokemon(pokemonData);
 
 showTypes.addEventListener('change', () => {
   const value = showTypes.value;
-  cardContainer.innerHTML = '';
-  typeSelected = document.querySelector('[id="types"]').value;
-  showAllPokemon(filterDataByType(filterDataByType(pokemonData, typeSelected), value));
+  cardContainer.innerHTML = ''; 
+  showAllPokemon(filterDataByType(pokemonData, value));
 });
 
 showRegion.addEventListener('change', () => {
