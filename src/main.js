@@ -84,15 +84,13 @@ const showAllPokemon = (allPokemon) => {
     <article id="modal-${pokemon.num}">
     <p class="id-number">${pokemon.num}</p>
           <section class="name-card_container">
-            <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}>
+            <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
           <h1 id="namePokemon" class="namePokemon">${pokemon.name}</h1>
           </section>
             <section class="info-card_container">
             <div class="column">
-              <h2>HP:</h2>
-              <p id="valueHP"  class="input">${pokemon.stats['max-hp']}</p>
-              <h2>CP:</h2>
-              <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
+              <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']}</p>
+              <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']}</p>
               </div>
               <div class="column" id="types">
                 ${pokemon.type.map(elemento => {
@@ -100,25 +98,48 @@ const showAllPokemon = (allPokemon) => {
       })
         }
               </div>
-              <button>Cualquiera</button>
+              <button>More</button>
               </article>
-            </section> 
-                     
+            </section>
+
             `;
     const btnModal = container.querySelector('button');
     btnModal.addEventListener('click',
       function mostrarModal() {
-        modalShow.classList.toggle('hide'); 
+        modalShow.classList.toggle('hide');
         modalContainer.innerHTML =
-          `<h1>${pokemon.name}</h1>
-        <p>${pokemon.about}
-      
-        </p>
-        <p>
-         POKEMON
+          `
+          <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
+          <h1 class="namePokemon">${pokemon.name}</h1>
+          <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']}</p>
+          <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']}</p>
+          <p> Base-attack: ${pokemon.stats['base-attack']}</p>
+          <p> Base-Defense: ${pokemon.stats['base-defense']}</p>
+          <p> Base-Stamina: ${pokemon.stats['base-stamina']}</p>
+          <div class="column" id="types">
+          <h2>Type:</h2>
+          ${pokemon.type.map(elemento => {
 
-          
-        </p>`
+  return `<h3 class="input ${elemento}" > ${elemento}</h3>`
+})
+  }
+        </div>
+        <div class="column" id="resistant">
+        <h2>Resistant:</h2>
+          ${pokemon.resistant.map(elemento => {
+  return `<h3 class="input ${elemento}" > ${elemento}</h3>`
+})
+  }
+        </div>
+
+        <div class="column" id="weaknesses">
+        <h2>Weaknesses:</h2>
+          ${pokemon.weaknesses.map(elemento => {
+  return `<h3 class="input ${elemento}" > ${elemento}</h3>`
+})
+  }
+        </div>
+        `
       });
 
 

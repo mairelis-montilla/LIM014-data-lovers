@@ -140,7 +140,7 @@ h2{
   text-align: center;
   margin: 10px;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 5px;
   border: 1px solid black;
   font-weight: bolder;
   background-color: white;
@@ -289,7 +289,7 @@ h2{
 }
 
 
-.modal{ 
+.modal{
   position: fixed;
   top: 0;
   left: 0;
@@ -297,12 +297,12 @@ h2{
   width: 100%;
   z-index: 1;
   background-color: rgba(0,0,0,0.6);
-  padding: 0 1.5rem; 
+  padding: 0 1.5rem;
 }
 
 .modal > .modal-container{
   background-color: #fff;
-  max-width: 500px;
+  max-width: 800px;
   padding: 2rem;
   margin: 10vh auto;
   border-radius: 10px; 
