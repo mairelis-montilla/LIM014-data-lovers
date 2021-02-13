@@ -122,10 +122,7 @@ label {
   border-radius: 0 0 18px 18px;
 
 }
-h2{
-  margin: 15px 5px;
 
-}
 .column {
   display: flex;
   flex-direction: row;
@@ -297,29 +294,29 @@ h2{
   width: 100%;
   z-index: 1;
   background-color: rgba(0,0,0,0.6);
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 }
 
 .modal > .modal-container{
   background-color: #fff;
   max-width: 800px;
   padding: 2rem;
-  margin: 10vh auto;
-  border-radius: 10px; 
+  margin: 10px auto;
+  border-radius: 10px;
 }
 
-.modal > .modal-container > h1{ 
-  text-align: center;
+.modal > .modal-container > h1{
+    text-align: center;
   font-size: 1.4rem;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
 }
 
 .modal > .modal-container > p{
-  margin-top: 30px;
+  margin-top: 5px;
   text-align: center;
   font-weight: 400;
   font-size: 1.2rem;
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
   line-height: 1.4;
 }
 

@@ -73,7 +73,7 @@ listTopPokemon.addEventListener('click', () => {
 
 
 
-const modalContainer = document.querySelector('.modal-container');
+const modalContainer = document.querySelector('#modal-information');
 
 
 const showAllPokemon = (allPokemon) => {
@@ -89,8 +89,8 @@ const showAllPokemon = (allPokemon) => {
           </section>
             <section class="info-card_container">
             <div class="column">
-              <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']}</p>
-              <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']}</p>
+              <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']} </p>
+              <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']} </p>
               </div>
               <div class="column" id="types">
                 ${pokemon.type.map(elemento => {
@@ -104,13 +104,39 @@ const showAllPokemon = (allPokemon) => {
 
             `;
     const btnModal = container.querySelector('button');
-    btnModal.addEventListener('click',
-      function mostrarModal() {
+// const uno = pokemon.evolution['next-evolution'];
+// const dos = uno[0]['next-evolution'];
+// console.log(uno, 'uno');
+// console.log(dos, 'dos');
+
+    if (pokemon.evolution) {
+
+      if (pokemon.evolution['next-evolution']) {
+
+        console.log('pokemon con next evolution', pokemon.name);
+        const template = getNextEvolution(pokemon.evolution['next-evolution']);
+        console.log('pokemones para template', template);
+      }
+      if(pokemon.evolution['prev-evolution']){
+        //const template = getPrevEvolution(pokemon.evolution['prev-evolution'])
+      }
+    }
+
+    btnModal.addEventListener('click',() => {
         modalShow.classList.toggle('hide');
-        modalContainer.innerHTML =
-          `
-          <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
+        modalContainer.innerHTML = `
+          <p class="id-number">${pokemon.num}</p>
+        <section class="name-card_container">
+          <img class="image-pokemon_modal" src="${pokemon.img}" alt="${pokemon.name}">
           <h1 class="namePokemon">${pokemon.name}</h1>
+          </section>
+            <article>
+              <h2>size</h2>
+              <p>Height : ${pokemon.size['height']}</p>
+              <p>Weight : ${pokemon.size['weight']}</p>
+            </article>
+            <article>
+            <h2>Stats </h2>
           <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']}</p>
           <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']}</p>
           <p> Base-attack: ${pokemon.stats['base-attack']}</p>
@@ -136,9 +162,13 @@ const showAllPokemon = (allPokemon) => {
         <h2>Weaknesses:</h2>
           ${pokemon.weaknesses.map(elemento => {
   return `<h3 class="input ${elemento}" > ${elemento}</h3>`
-})
+    })
   }
         </div>
+        <article >
+          <h2>Evolution </h2>
+
+        </article>
         `
       });
 
@@ -198,3 +228,45 @@ searchInput.addEventListener('input', () => {
   }
 
 })
+/*
+
+if (pkemon['next-evolution']) {
+  getEvolution()
+
+}
+
+
+getEvolution(pokemon) {
+  if (pokemon['next-evolution']) {
+
+    returngetEvolution(pokemon);
+  } else {
+
+    return '<p></p>';
+  }
+} */
+
+function getNextEvolution(elemento) {
+  console.log('getNextEvolution', elemento);
+  let nextEvolution = elemento[0]['next-evolution'];
+  const evolutions =[];
+  if(nextEvolution) {
+    console.log('hay next evolution', nextEvolution);
+    evolutions.push(...getNextEvolution(nextEvolution));
+  }
+  console.log('no hay next evolution')
+  evolutions.push(elemento[0]);
+  console.log('Evolutions', evolutions);
+  return evolutions.reverse();
+}
+/* function getPrevEvolution(elemento) {
+  console.log('getprevEvolution', elemento);
+  let uno = elemento[0]['prev-evolution'];
+  if(uno) {
+    console.log('hay prev evolution', uno);
+    return getPrevEvolution(uno);
+  } else {
+    console.log('no hay mas prev evolution')
+    return true;
+  }
+} */
