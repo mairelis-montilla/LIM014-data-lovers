@@ -88,88 +88,97 @@ const showAllPokemon = (allPokemon) => {
           <h1 id="namePokemon" class="namePokemon">${pokemon.name}</h1>
           </section>
             <section class="info-card_container">
-            <div class="column">
+            <div class="rows">
               <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']} </p>
               <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']} </p>
               </div>
-              <div class="column" id="types">
+              <div class="rows" id="types">
                 ${pokemon.type.map(elemento => {
         return `<h3 class="input ${elemento}" > ${elemento}</h3>`
       })
         }
               </div>
-              <button>More</button>
+              <button class="input">More</button>
               </article>
             </section>
 
             `;
     const btnModal = container.querySelector('button');
-// const uno = pokemon.evolution['next-evolution'];
-// const dos = uno[0]['next-evolution'];
-// console.log(uno, 'uno');
-// console.log(dos, 'dos');
+    let templateNextEvolution;
+    let templatePrevEvolutions;
 
     if (pokemon.evolution) {
 
       if (pokemon.evolution['next-evolution']) {
 
-        console.log('pokemon con next evolution', pokemon.name);
-        const template = getNextEvolution(pokemon.evolution['next-evolution']);
-        console.log('pokemones para template', template);
+        let nextEvolutions = getNextEvolution(pokemon.evolution['next-evolution']);
+        templateNextEvolution = nextEvolutions.map(elemento => {
+          return `<div><h2> ${elemento.name}</h2>
+          <img  class="image-pokemon" src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png"> <h3> Candy Cost: ${elemento['candy-cost']}</h3></div>`
+            })
       }
       if(pokemon.evolution['prev-evolution']){
-        //const template = getPrevEvolution(pokemon.evolution['prev-evolution'])
+          let prevEvolutions = getPrevEvolution(pokemon.evolution['prev-evolution']);
+          templatePrevEvolutions =prevEvolutions.map(elemento =>{
+          return`<div><h2> ${elemento.name}</h2>
+          <img class="image-pokemon"src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
+          <h3> Candy Cost: ${elemento['candy-cost']} </h3></div>`
+          })
       }
     }
 
     btnModal.addEventListener('click',() => {
         modalShow.classList.toggle('hide');
         modalContainer.innerHTML = `
-          <p class="id-number">${pokemon.num}</p>
-        <section class="name-card_container">
-          <img class="image-pokemon_modal" src="${pokemon.img}" alt="${pokemon.name}">
+        <p class="id-number">${pokemon.num}</p>
+      <section class="name-card_container">
+        <article>
+          <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
           <h1 class="namePokemon">${pokemon.name}</h1>
-          </section>
-            <article>
-              <h2>size</h2>
+        </article>
+        <h2 class="subtitle">Type:</h2>
+        <article class="rows">
+            ${pokemon.type.map(elemento => {
+          return `<p class="input ${elemento}"> ${elemento}</p>`
+          })}
+        </article>
+      </section>
+        <section>
+        <h2 class="subtitle">size</h2>
+        <article class="rows">
               <p>Height : ${pokemon.size['height']}</p>
               <p>Weight : ${pokemon.size['weight']}</p>
             </article>
-            <article>
-            <h2>Stats </h2>
-          <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']}</p>
-          <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']}</p>
-          <p> Base-attack: ${pokemon.stats['base-attack']}</p>
-          <p> Base-Defense: ${pokemon.stats['base-defense']}</p>
-          <p> Base-Stamina: ${pokemon.stats['base-stamina']}</p>
-          <div class="column" id="types">
-          <h2>Type:</h2>
-          ${pokemon.type.map(elemento => {
-
-  return `<h3 class="input ${elemento}" > ${elemento}</h3>`
-})
-  }
-        </div>
-        <div class="column" id="resistant">
-        <h2>Resistant:</h2>
+        <h2 class="subtitle">Stats </h2>
+            <article class="rows">
+            <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']}</p>
+            <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']}</p>
+            <p> Base-attack: ${pokemon.stats['base-attack']}</p>
+            <p> Base-Defense: ${pokemon.stats['base-defense']}</p>
+            <p> Base-Stamina: ${pokemon.stats['base-stamina']}</p>
+          </article>
+          </section>
+      <section>
+<section>
+        <h2 class="subtitle">Resistant:</h2>
+        <article class=rows>
           ${pokemon.resistant.map(elemento => {
-  return `<h3 class="input ${elemento}" > ${elemento}</h3>`
-})
-  }
-        </div>
-
-        <div class="column" id="weaknesses">
-        <h2>Weaknesses:</h2>
-          ${pokemon.weaknesses.map(elemento => {
-  return `<h3 class="input ${elemento}" > ${elemento}</h3>`
+          return `<p class="input ${elemento}" > ${elemento}</p>`
+            })
+            }</article>
+      <h2 class="subtitle">Weaknesses:</h2>
+      <article class=rows>
+      ${pokemon.weaknesses.map(elemento => {
+  return `<p class="input ${elemento}" > ${elemento}</p>`
     })
-  }
-        </div>
-        <article >
-          <h2>Evolution </h2>
-
+  }</article>
+          <h2 class="subtitle">Evolution </h2>
+        <article class=rows>
+        ${templateNextEvolution ? templateNextEvolution : ''}
+        ${templatePrevEvolutions ? templatePrevEvolutions : ''}
         </article>
-        `
+        </section>
+        </section> `
       });
 
 
@@ -228,45 +237,22 @@ searchInput.addEventListener('input', () => {
   }
 
 })
-/*
-
-if (pkemon['next-evolution']) {
-  getEvolution()
-
-}
-
-
-getEvolution(pokemon) {
-  if (pokemon['next-evolution']) {
-
-    returngetEvolution(pokemon);
-  } else {
-
-    return '<p></p>';
-  }
-} */
 
 function getNextEvolution(elemento) {
-  console.log('getNextEvolution', elemento);
   let nextEvolution = elemento[0]['next-evolution'];
   const evolutions =[];
   if(nextEvolution) {
-    console.log('hay next evolution', nextEvolution);
     evolutions.push(...getNextEvolution(nextEvolution));
   }
-  console.log('no hay next evolution')
   evolutions.push(elemento[0]);
-  console.log('Evolutions', evolutions);
   return evolutions.reverse();
 }
-/* function getPrevEvolution(elemento) {
-  console.log('getprevEvolution', elemento);
-  let uno = elemento[0]['prev-evolution'];
-  if(uno) {
-    console.log('hay prev evolution', uno);
-    return getPrevEvolution(uno);
-  } else {
-    console.log('no hay mas prev evolution')
-    return true;
+function getPrevEvolution(elemento) {
+  let prevEvolution = elemento[0]['prev-evolution'];
+  const evolutions =[];
+  if(prevEvolution) {
+    evolutions.push(...getNextEvolution(prevEvolution));
   }
-} */
+  evolutions.push(elemento[0]);
+  return evolutions.reverse();
+}
