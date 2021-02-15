@@ -97,7 +97,7 @@ label {
   border: 2px solid black;
   border-radius: 20px;
   width: 350px;
-  height: 300px;
+  height: 320px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -115,22 +115,15 @@ label {
 }
 
 .info-card_container {
-
-  border-top: 1px solid black;
-  height: 122px;
-  background-color: #FF0000;
   border-radius: 0 0 18px 18px;
-
 }
-h2{
-  margin: 15px 5px;
 
-}
-.column {
+.rows {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 4px;
+  text-align: center;
 }
 
 .input {
@@ -203,68 +196,59 @@ h2{
   color: black;
   transform: scale(1.1);
 }
-.btnPrimary:active{
-  transform: scale(1.2);
-}
 /* CLASES FONDOS DE CARDS*/
 .grass {
-  background: linear-gradient(180deg, #FFFFFF 0%, #6EC47B 54.17%, #0D9222 100%, #0D9222 100%);
+  background-color:#8ff09d;
 }
 
 .bug {
-  background: linear-gradient(180deg, #FFFFFF 0%, #AEFF88 50.52%, #5BF213 100%);
+  background-color: #ffcdb0 ;
 }
 
 .dark {
-  background: linear-gradient(120deg, #FFFFFF 0%, #948B8B 51.56%, #222222 100%);
+  background-color: #b3acac;
 }
 
 .dragon {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F9AA7D 50%, #FF5C00 100%);
+background-color:#ff823a ;
 }
 
 .electric {
-  background: linear-gradient(120deg, #FFFFFF 0%, #FFEE7B 51.04%, #FFDE00 100%);
+  background-color:#f7e366;
 }
 
 .fairy {
-
-  background: linear-gradient(120deg, #FFFFFF 0%, #FFBBBB 40.63%, #9BA2C7 80.21%, #717096 100%);
-
+  background-color: #ffcece ;
 }
 
 .fighting {
-  background: linear-gradient(180deg, #FFFFFF 0%, #FFD482 42.71%, #EAB54F 66.15%, #ED3F3F 96.35%);}
+  background-color: #ff6666; }
 
 .fire {
-  background: linear-gradient(180deg, #FFFFFF 0%, #FB8290 48.96%, #ee5b21 98.44%);
+  background-color: rgb(253, 86, 86);
 }
 .flying{
-  background: linear-gradient(120deg, #FFFFFF 0%, #a3f5dc 46.35%, #32f5db 100%);
+  background-color:#a3f5dc ;
 }
 
 .ghost {
-  background: linear-gradient(180deg, #FFFFFF 0%, #C67DFF 48.96%, #620CA7 92.19%);
-}
-
-.grass {
-  background: linear-gradient(180deg, #FFFFFF 0%, #72FF88 54.69%, #0D9222 100%, #0D9222 100%);
+  background-color:#C67DFF ;
 }
 
 .ground {
-  background: linear-gradient(180deg, #FFFFFF 0%, #FFB978 51.56%, #884200 100%);
+  background-color: #fa9434 ;
 }
 
 .ice {
-  background: linear-gradient(180deg, #FFFFFF 0%, #2d979e 48.44%, #00c3d1 100%);
+  background-color: #2d979e ;
 }
 
 .normal {
-  background: linear-gradient(180deg, #FFFFFF 0%, #BBAFAF 48.44%, #5F5D5D 100%);
+  background-color:#BBAFAF ;
 }
 
 .poison {
-  background: linear-gradient(180deg, #FFFFFF 0%, #9c81ac 47.57%, #543a63 100%);
+  background-color: #543a63;
 }
 
 .psychic {
@@ -297,31 +281,25 @@ h2{
   width: 100%;
   z-index: 1;
   background-color: rgba(0,0,0,0.6);
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 }
 
 .modal > .modal-container{
   background-color: #fff;
   max-width: 800px;
   padding: 2rem;
-  margin: 10vh auto;
-  border-radius: 10px; 
+  margin: 10px auto;
+  border-radius: 10px;
+}
+.namePokemon{
+  font-size: 24px;
+  font-weight: 800;
+}
+.subtitle{
+  font-size: 18px;
 }
 
-.modal > .modal-container > h1{ 
-  text-align: center;
-  font-size: 1.4rem;
-  font-family: 'Roboto', sans-serif;  
-}
 
-.modal > .modal-container > p{
-  margin-top: 30px;
-  text-align: center;
-  font-weight: 400;
-  font-size: 1.2rem;
-  font-family: 'Roboto', sans-serif; 
-  line-height: 1.4;
-}
 
 
 /* BREAKPOINS MEDIA RESPONSIVE*/

@@ -35,9 +35,7 @@ listTopPokemon.addEventListener('click', () => {
 
 listPokemonIndex.addEventListener('click', () =>
   window.location.assign('./pokemon.html')
-); 
-
- 
+);   
 
 // modal
 closeModal.addEventListener('click', hideModal);
@@ -55,50 +53,121 @@ let typeValue;
  
  
  // MOSTRAR TODOS LOS POKEMONS
+ 
 const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => {
-    let container = document.createElement('section');
+    const container = document.createElement('section');
     container.className = 'card-contrainer ' + pokemon.type[0];
     cardContainer.appendChild(container).innerHTML = `
     <article id="modal-${pokemon.num}">
     <p class="id-number">${pokemon.num}</p>
           <section class="name-card_container">
-            <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}>
+            <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
           <h1 id="namePokemon" class="namePokemon">${pokemon.name}</h1>
           </section>
             <section class="info-card_container">
-            <div class="column">
-              <h2>HP:</h2>
-              <p id="valueHP"  class="input">${pokemon.stats['max-hp']}</p>
-              <h2>CP:</h2>
-              <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
+            <div class="rows">
+              <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']} </p>
+              <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']} </p>
               </div>
-              <div class="column" id="types">
+              <div class="rows" id="types">
                 ${pokemon.type.map(elemento => {
         return `<h3 class="input ${elemento}" > ${elemento}</h3>`
       })
         }
               </div>
-              <button>Cualquiera</button>
+              <button class="input">More</button>
               </article>
-            </section> 
-                     
-            `  
-    let btnModal = container.querySelector('button');
-    btnModal.addEventListener('click',
-      function mostrarModal() {
-        console.log("entró");
-        modalShow.classList.toggle('hide'); 
-        modalContainer.innerHTML =
-          `<h1>${pokemon.name}</h1>
-        <p>${pokemon.about}</p>
-        <p>
-         POKEMON 
-        </p>`
-      }); 
+            </section>
+            `;
+    const btnModal = container.querySelector('button');
+    let templateNextEvolution;
+    let templatePrevEvolutions;
+
+    if (pokemon.evolution) {
+
+      if (pokemon.evolution['next-evolution']) {
+
+        let nextEvolutions = getNextEvolution(pokemon.evolution['next-evolution']);
+        templateNextEvolution = nextEvolutions.map(elemento => {
+          return `<div><h2> ${elemento.name}</h2>
+          <img  class="image-pokemon" src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png"> <h3> Candy Cost: ${elemento['candy-cost']}</h3></div>`
+            })
+      }
+      if(pokemon.evolution['prev-evolution']){
+          let prevEvolutions = getPrevEvolution(pokemon.evolution['prev-evolution']);
+          templatePrevEvolutions =prevEvolutions.map(elemento =>{
+          return`<div><h2> ${elemento.name}</h2>
+          <img class="image-pokemon"src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
+          <h3> Candy Cost: ${elemento['candy-cost']} </h3></div>`
+          })
+      }
+    }
+
+    btnModal.addEventListener('click',() => {
+        modalShow.classList.toggle('hide');
+        modalContainer.innerHTML = `
+        <p class="id-number">${pokemon.num}</p>
+      <section class="name-card_container">
+        <article>
+          <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
+          <h1 class="namePokemon">${pokemon.name}</h1>
+        </article>
+        <h2 class="subtitle">Type:</h2>
+        <article class="rows">
+            ${pokemon.type.map(elemento => {
+          return `<p class="input ${elemento}"> ${elemento}</p>`
+          })}
+        </article>
+      </section>
+        <section>
+        <h2 class="subtitle">size</h2>
+        <article class="rows">
+              <p>Height : ${pokemon.size['height']}</p>
+              <p>Weight : ${pokemon.size['weight']}</p>
+            </article>
+        <h2 class="subtitle">Stats </h2>
+            <article class="rows">
+            <p id="valueHP" > Max-HP: ${pokemon.stats['max-hp']}</p>
+            <p id="valueCP" > Max-CP: ${pokemon.stats['max-cp']}</p>
+            <p> Base-attack: ${pokemon.stats['base-attack']}</p>
+            <p> Base-Defense: ${pokemon.stats['base-defense']}</p>
+            <p> Base-Stamina: ${pokemon.stats['base-stamina']}</p>
+          </article>
+          </section>
+      <section>
+<section>
+        <h2 class="subtitle">Resistant:</h2>
+        <article class=rows>
+          ${pokemon.resistant.map(elemento => {
+          return `<p class="input ${elemento}" > ${elemento}</p>`
+            })
+            }</article>
+      <h2 class="subtitle">Weaknesses:</h2>
+      <article class=rows>
+      ${pokemon.weaknesses.map(elemento => {
+  return `<p class="input ${elemento}" > ${elemento}</p>`
+    })
+  }</article>
+          <h2 class="subtitle">Evolution </h2>
+        <article class=rows>
+        ${templateNextEvolution ? templateNextEvolution : ''}
+        ${templatePrevEvolutions ? templatePrevEvolutions : ''}
+        </article>
+        </section>
+        </section>
+         `
+      });
+
+
+
   })
 };
 
+
+
+
+ 
 
 // PARA MOSTRAR TODOS LOS POKEMONS AL INICIO //
 showAllPokemon(pokemonData);
@@ -165,3 +234,23 @@ searchInput.addEventListener('input', () => {
     showAllPokemon(pokemonSearch);
   } 
 })
+
+
+function getNextEvolution(elemento) {
+  let nextEvolution = elemento[0]['next-evolution'];
+  const evolutions =[];
+  if(nextEvolution) {
+    evolutions.push(...getNextEvolution(nextEvolution));
+  }
+  evolutions.push(elemento[0]);
+  return evolutions.reverse();
+}
+function getPrevEvolution(elemento) {
+  let prevEvolution = elemento[0]['prev-evolution'];
+  const evolutions =[];
+  if(prevEvolution) {
+    evolutions.push(...getNextEvolution(prevEvolution));
+  }
+  evolutions.push(elemento[0]);
+  return evolutions.reverse();
+}

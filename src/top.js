@@ -34,26 +34,25 @@ const showAllPokemon = (allPokemon) => {
     let container = document.createElement('section');
     container.className = 'card-contrainer ' + pokemon.type[0];
     mainContainer.appendChild(container).innerHTML = `
-    <article id="modal-${pokemon.num}">
-    <p class="id-number">${pokemon['spawn-chance']}</p>
+   
+
+            <article id="modal-${pokemon.num}">
+    <p class="id-number">${pokemon.num}</p>
           <section class="name-card_container">
-            <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}>
+            <img class="${pokemon.num}" src="${pokemon.img}" alt="${pokemon.name}">
           <h1 id="namePokemon" class="namePokemon">${pokemon.name}</h1>
           </section>
             <section class="info-card_container">
-            <div class="column">
-              <h2>HP:</h2>
-              <p id="valueHP"  class="input">${pokemon.stats['max-hp']}</p>
-              <h2>CP:</h2>
-              <p id="valueCP" class="input">${pokemon.stats['max-cp']}</p>
+            <div class="rows">
+              <p id="valueHP"> Max-HP: ${pokemon.stats['max-hp']}</p>
+              <p id="valueCP"> Max-CP: ${pokemon.stats['max-cp']}</p>
               </div>
-              <div class="column" id="types">
-
-              <h2>% Spawn : </h2>
+              <div class="rows" id="types"> 
+              <p class="input">Spawn</p> 
               <p class="input">${pokemon['spawn-chance']}</p> 
-              </div> 
-              </article>
-            </section> 
+              </div>
+              <button class="input">More</button>
+              </section></article>
                      
             `   
     }   
