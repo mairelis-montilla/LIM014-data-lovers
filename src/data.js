@@ -25,48 +25,66 @@ export const filterDataByRegion = (data, condition) => {
   }
 };
 //FILTRAR DATOS POR NUMERO
-export const filterDataByNum =(data, condition) =>{
+export const filterDataByNum = (data, condition) => {
   return data.filter(dataFilter => condition.includes(parseInt(dataFilter.num)))
-}
-
-// MOSTRAR LOS DATOS POR ORDEN A-Z / Z-A
-export const orderDataByName = (data, condition) => {
-  if (condition === 'nameAsc') {
-    // 1 = b va antes que a // -1 = a va antes que b
-    return data.sort((a, b) => (a.name > b.name) ? 1 : -1);
-  }
-  else {
-    // 1 = a va antes que b // -1 = b va antes que a
-    return data.sort((a, b) => (b.name > a.name) ? 1 : -1);
-  }
 };
 
-// MOSTRAR LOS DATOS POR ORDEN DE NÚMERO
-export const orderDataByNum = (data, condition) => {
-  if (condition === 'numAsc') {
-    return data.sort((a, b) => a.num - b.num);
-  }
-  else {
-    return data.sort((a, b) => b.num - a.num);
-  }
-};
 
-// MOSTRAR LOS DATOS POR ORDEN DE CP
-export const orderDataByCP = (data, condition) => {
-  if (condition === 'cpAsc') {
-    return data.sort((a, b) => a.stats['max-cp'] - b.stats['max-cp']);
-  }
-  else {
-    return data.sort((a, b) => b.stats['max-cp'] - a.stats['max-cp']);
-  }
-};
 
-// MOSTRAR LOS DATOS POR ORDEN DE HP
-export const orderDataByHP = (data, condition) => {
-  if (condition === 'hpAsc') {
-    return data.sort((a, b) => a.stats['max-hp'] - b.stats['max-hp']);
-  }
+
+
+export const sortData = (data, sortBy, sortOrder) => {
+ 
+  // MOSTRAR LOS DATOS POR ORDEN A-Z / Z-A
+
+  if (sortBy === 'spawn') { 
+    if (sortOrder === 'Asc') {
+      return data.sort((a, b) => a['spawn-chance'] - b['spawn-chance'])
+    } else {
+      return data.sort((a, b) => b['spawn-chance'] - a['spawn-chance'])
+    }
+     
+  } 
+
+
+  if (sortBy === 'name') { 
+    if (sortOrder === 'Asc') {  
+      return data.sort((a, b) => (a.name > b.name) ? 1 : -1) 
+    }
+    else { 
+      return data.sort((a, b) => (b.name > a.name) ? 1 : -1) 
+    }
+     
+  } 
+  // MOSTRAR LOS DATOS POR ORDEN DE NÚMERO
+  else if (sortBy === 'num') {
+    if (sortOrder === 'Asc') {
+      return data.sort((a, b) => a.num - b.num)
+    } else {
+      return data.sort((a, b) => b.num - a.num)
+    }
+  } 
+  // MOSTRAR LOS DATOS POR ORDEN DE CP 
+  else if (sortBy === 'cp') {
+    if (sortOrder === 'Asc') {
+          // 1 = b va antes que a // -1 = a va antes que b 
+      return data.sort((a, b) => a.stats['max-cp'] - b.stats['max-cp']);
+    } else {
+          // 1 = a va antes que b // -1 = b va antes que a 
+      return data.sort((a, b) => b.stats['max-cp'] - a.stats['max-cp']);
+    }
+  } 
+  // MOSTRAR LOS DATOS POR ORDEN DE HP
+  else if (sortBy === 'hp') {
+    if (sortOrder === 'Asc') {
+      return data.sort((a, b) => a.stats['max-hp'] - b.stats['max-hp']);
+    } else {
+      return data.sort((a, b) => b.stats['max-hp'] - a.stats['max-hp']);
+    }
+  }   
   else {
-    return data.sort((a, b) => b.stats['max-hp'] - a.stats['max-hp']);
+    return data;
   }
+ 
 };
+ 

@@ -1,11 +1,9 @@
 import {
   filterDataByType,
   filterDataByName,
-  filterDataByRegion,
-  orderDataByName,
-  orderDataByNum,
-  orderDataByCP,
-  orderDataByHP
+  filterDataByRegion, 
+  sortData,
+
 } from './data.js';
 import data from './data/pokemon/pokemon.js';
 
@@ -13,69 +11,49 @@ import data from './data/pokemon/pokemon.js';
 
 const pokemonData = data.pokemon;
 const searchInput = document.querySelector('#searchInput');
-const showRegion = document.querySelector('#region');
+const showRegion = document.querySelector('[id="region"]');
 const showTypes = document.querySelector('[id="types"]');
-const orderBy = document.querySelector('[id="order"]');
+const iconArrow = document.querySelector('[id="iconArrow"]');
+const selectOrderBy = document.querySelector('[id="order"]');
 const cardContainer = document.getElementById('mainPokemon');
+const closeModal = document.getElementById('closeModal'); 
+const modalShow = document.getElementById('modal'); 
+const modalContainer = document.querySelector('.modal-container'); 
 
+//NAVEGACIÓN ENTRE PESTAÑAS
+const listPokemonIndex = document.getElementById('listIndexPokemon');
+const listTopPokemon = document.getElementById('listTopPokemon'); 
+const listHomePokemon = document.getElementById('listHomePokemon'); 
 
-/*
-const btnModal = document.getElementById('btnModal');  */
-const modalShow = document.getElementById('modal');
-/*
-btnModal.addEventListener('click', mostrarModal);   */
+listHomePokemon.addEventListener('click', () => {
+  window.location.assign('./index.html');
+}); 
+  
+listTopPokemon.addEventListener('click', () => {
+  window.location.assign('./top.html');
+}); 
 
+listPokemonIndex.addEventListener('click', () =>
+  window.location.assign('./pokemon.html')
+);   
 
-const closeModal = document.getElementById('closeModal');
+// modal
 closeModal.addEventListener('click', hideModal);
 
 function hideModal() {
   modalShow.classList.toggle('hide');
 }
-
-
-
-const listIndexPokemon = document.getElementById('listIndexPokemon');
-const listTopPokemon = document.getElementById('listTopPokemon');
-
-
-
-
-
+  
+// global filter variables
+let regionValue;
 let typeSelected;
-/*
-const showPokemonBasic = (allPokemon) => {
-  let basicPokemon = [];
-  allPokemon.forEach(pokemon =>
-    basicPokemon.push({
-      num: pokemon.num,
-      name: pokemon.name,
-      hp: pokemon.stats["max-hp"],
-      stats: pokemon.stats["max-cp"],
-      img: pokemon.img,
-      type: pokemon.type,
-      }))
-
-  return basicPokemon;
-}; */
-
-//NAVEGACIÓN ENTRE PESTAÑAS
-
-listIndexPokemon.addEventListener('click', () => {
-  window.location.assign('./index.html');
-});
-listTopPokemon.addEventListener('click', () => {
-  window.location.assign('./top.html');
-});
-
-
-// MOSTRAR TODOS LOS POKEMONS
-
-
-
-const modalContainer = document.querySelector('#modal-information');
-
-
+let orderBy;
+let sortByValue;
+let typeValue;
+ 
+ 
+ // MOSTRAR TODOS LOS POKEMONS
+ 
 const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => {
     const container = document.createElement('section');
@@ -101,7 +79,6 @@ const showAllPokemon = (allPokemon) => {
               <button class="input">More</button>
               </article>
             </section>
-
             `;
     const btnModal = container.querySelector('button');
     let templateNextEvolution;
@@ -178,7 +155,8 @@ const showAllPokemon = (allPokemon) => {
         ${templatePrevEvolutions ? templatePrevEvolutions : ''}
         </article>
         </section>
-        </section> `
+        </section>
+         `
       });
 
 
@@ -187,56 +165,76 @@ const showAllPokemon = (allPokemon) => {
 };
 
 
+
+
+ 
+
 // PARA MOSTRAR TODOS LOS POKEMONS AL INICIO //
 showAllPokemon(pokemonData);
-///////////////////////////////////////////////
+/////////////////////////////////////////////// 
 
+// Order
+iconArrow.addEventListener('click', () => {
+  iconArrow.src = toggleImg(); 
+  iconArrow.value = valueImg(); 
+  sortByArrow();
+})
+
+function toggleImg() {
+  let imgSRC = iconArrow.src;
+  imgSRC.includes('/data/images/arrowBottom.svg') ? 
+  imgSRC = '/data/images/arrowTop.svg' : imgSRC = '/data/images/arrowBottom.svg'; 
+  return imgSRC;
+}
+
+function valueImg() {
+  let imgValue = iconArrow.value;
+  imgValue.includes('Asc') ? imgValue = 'Desc' : imgValue = 'Asc'; 
+  return imgValue;
+}
+
+
+// Ordenar Data
+selectOrderBy.addEventListener('change', sortByArrow);
+
+function sortByArrow() {
+  sortByValue = selectOrderBy.value;  
+  regionValue = showRegion.value;
+  typeSelected = showTypes.value;  
+  orderBy = iconArrow.value;
+  cardContainer.innerHTML = ''; 
+  let data = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue); 
+  showAllPokemon(sortData(data, sortByValue, orderBy));  
+}
+
+
+// Filtrar Data por Tipo
 showTypes.addEventListener('change', () => {
-  const value = showTypes.value;
+  typeValue = showTypes.value;
   cardContainer.innerHTML = '';
-  showAllPokemon(filterDataByType(pokemonData, value));
+  showAllPokemon(filterDataByType(pokemonData, typeValue));
 });
 
+// Filtrar Data por Región
 showRegion.addEventListener('change', () => {
-  const value = showRegion.value;
+  regionValue = showRegion.value;
   typeSelected = document.querySelector('[id="types"]').value;
   cardContainer.innerHTML = '';
-  showAllPokemon(filterDataByRegion(filterDataByType(pokemonData, typeSelected), value));
-});
-
-
-orderBy.addEventListener('change', () => {
-  const value = orderBy.value;
-
-  cardContainer.innerHTML = '';
-  let data = filterDataByType(pokemonData, typeSelected);
-
-  if (value === 'nameAsc' || value === 'nameDesc') {
-    showAllPokemon(orderDataByName(data, value));
-  } else if (value === 'numAsc' || value === 'numDesc') {
-    showAllPokemon(orderDataByNum(data, value));
-  } else if (value === 'cpAsc' || value === 'cpDesc') {
-    showAllPokemon(orderDataByCP(data, value));
-  } else if (value === 'hpAsc' || value === 'hpDesc') {
-    showAllPokemon(orderDataByHP(data, value));
-  } else {
-    showAllPokemon(pokemonData);
-  }
-});
+  let dataRegion = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);  
+  showAllPokemon(dataRegion);
+}); 
 
 // Busqueda
 searchInput.addEventListener('input', () => {
-
-  const pokemonSearch = filterDataByName(pokemonData, searchInput.value.toLowerCase());
-
+  const pokemonSearch = filterDataByName(pokemonData, searchInput.value.toLowerCase()); 
   if (pokemonSearch.length == 0) {
     cardContainer.textContent = 'Pokemon no encontrado';
   } else {
     cardContainer.innerHTML = '';
     showAllPokemon(pokemonSearch);
-  }
-
+  } 
 })
+
 
 function getNextEvolution(elemento) {
   let nextEvolution = elemento[0]['next-evolution'];
