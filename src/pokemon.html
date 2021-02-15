@@ -17,7 +17,8 @@
     <nav class="nav-container">
       <h1 class="title">PokeDex</h1>
       <ul class="list-container">
-        <li class="list" id="listIndexPokemon">inicio</li>
+        <li class="list" id="listHomePokemon">Inicio</li>
+        <li class="list" id="listIndexPokemon">Pokemon</li> 
         <li class="list" id="listTopPokemon">TOP 10</li>
       </ul>
     </nav>
@@ -29,7 +30,7 @@
     <input type="text" id="searchInput" class="input-search" placeholder="Buscar">
     <label for="types"> Tipos: </label>
     <select type="text" id="types" class="input-search">
-      <option value="all">Todos</option>
+      <option value="all" selected="selected">Todos</option>
       <option value="bug">Bug</option>
       <option value="dark">Dark</option>
       <option value="dragon"> Dragon</option>
@@ -51,49 +52,44 @@
     </select>
 
     <label for="region"> Región: </label>
-    <select type="text" id="region" class="input-search">
-      <option value="all">Todos</option>
+    <select type="text"  id="region" class="input-search">
+      <option value="all" selected="selected">Todos</option>
       <option value="kanto">Kanto</option>
       <option value="johto">Johto</option>
     </select>
-    <label for="order"> Orden: </label>
-    <select type="text" id="order" class="input-search">
-      <option value="all">Todos</option>
-      <optgroup label="Name">
-        <option value="nameAsc">a-Z</option>
-        <option value="nameDesc">Z-a</option>
-      </optgroup>
-      <optgroup label="Num">
-        <option value="numAsc">Menor a mayor</option>
-        <option value="numDesc">Mayor a menor</option>
-      </optgroup>
-      <optgroup label="CP">
-        <option value="cpAsc">Menor a mayor</option>
-        <option value="cpDesc">Mayor a menor</option>
-      </optgroup>
-      <optgroup label="HP">
-        <option value="hpAsc">Menor a mayor</option>
-        <option value="hpDesc">Mayor a menor</option>
-      </optgroup>
-
-    </select>
+    <label for="order"> Orden:  </label>
+    <select type="text" id="order" class="input-search">    
+        <option value='name' selected="selected">Nombre</option>   
+        <option value='num'>Número</option>   
+        <option value='cp'>CP</option>   
+        <option value='hp'>HP</option>  
+       
+    </select> 
+    
+    <input  type="image" id="iconArrow"
+            value="Asc" 
+            type="Asc" 
+            src= "./data/images/arrowBottom.svg"
+            alt="OrderBy"  
+            width="48" 
+            height="48">   
 
 
   </section>
 
 
+  
+  <div class="modal hide" id="modal">
+    <div class="modal-container">
+    </div>
+    <button id="closeModal">Cerrar</button>
+    </div>
+
   <main class="mainPokemon" id="mainPokemon">
+ 
 
 
-
-
-
-    <div class="modal hide" id="modal">
-      <div class="modal-container">
-
-      </div>
-      <button id="closeModal">Cerrar</button>
-      </div>
+      
   </main>
 
 
