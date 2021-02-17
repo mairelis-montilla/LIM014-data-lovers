@@ -29,35 +29,35 @@ const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => { 
   count++;
 
-  if (count < 11 ) { 
-    console.log(count);
+  if (count < 11 ) {
     let container = document.createElement('section');
     container.className = 'card-contrainer ' + pokemon.type[0];
     mainContainer.appendChild(container).innerHTML = `
-   
-
-            <article id="modal-${pokemon.num}">
-    <p class="id-number">${pokemon.num}</p>
-          <section class="name-card_container">
-            <img class="${pokemon.num}" src="${pokemon.img}" alt="${pokemon.name}">
+    <article>
+    <section class="name-card_container">
+    <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
+    <p class="subtitle">#${pokemon.num}</p>
           <h1 id="namePokemon" class="namePokemon">${pokemon.name}</h1>
           </section>
             <section class="info-card_container">
-            <div class="rows">
-              <p id="valueHP"> Max-HP: ${pokemon.stats['max-hp']}</p>
-              <p id="valueCP"> Max-CP: ${pokemon.stats['max-cp']}</p>
+          <div class="rows">
+            <p class="p" id="valueHP"> Max-HP <br> ${pokemon.stats['max-hp']}</p>
+            <p class="p"id="valueCP"> Max-CP <br> ${pokemon.stats['max-cp']}</p>
+            <p class="p">Spawn <br> ${pokemon['spawn-chance']}</p>
+          </div>
+              <div class="rows">
+                ${pokemon.type.map(elemento => {
+        return `<img  class="icon-type" src="./images/${elemento}.png">`
+      })
+        }
               </div>
-              <div class="rows" id="types"> 
-              <p class="input">Spawn</p> 
-              <p class="input">${pokemon['spawn-chance']}</p> 
-              </div>
-              <button class="input">More</button>
-              </section></article>
-                     
-            `   
-    }   
+              <button class="btn-secondary">About</button>
+              </article>
+            </section>`
+            }
+            
   })
 };
  
 
-showAllPokemon(sortData(pokemons, 'spawn', 'Desc'));   
+showAllPokemon(sortData(pokemons, 'spawn', 'Desc'));
