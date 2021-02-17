@@ -24,12 +24,17 @@ body{
   justify-content: center;
   text-align: center;
 }
-
+.logo{
+  position: absolute;
+  height: 90px;
+  width: 200px;
+  margin: 5px 20px;
+}
 .nav-container {
   height: 80px;
   padding: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
 }
 
@@ -91,7 +96,7 @@ p{
 .card-contrainer {
   background-color: white;
   margin: 20px;
-  border: 2px solid #f7ba15;
+  border: 3px solid #f7ba15;
   border-radius: 20px;
   width: 260px;
   height: 350px;
@@ -160,7 +165,7 @@ p{
   height: 100px;
   border-radius: 15px;
   background-color:#f7ba15; ;
-  color: white;
+  color: black;
   font-size: 30px;
   font-weight: bold;
   margin: 15px;
@@ -175,7 +180,7 @@ p{
   font-weight: bold;
 }
 .btnPrimary:hover, .btn-secondary:active{
-  color: black;
+  background-color: greenyellow;
   transform: scale(1.1);
 }
 .icon-type{
