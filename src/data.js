@@ -27,9 +27,7 @@ export const filterDataByRegion = (data, condition) => {
 //FILTRAR DATOS POR NUMERO
 export const filterDataByNum = (data, condition) => {
   return data.filter(dataFilter => condition.includes(parseInt(dataFilter.num)))
-};
-
-
+}; 
 
 
 
@@ -84,7 +82,53 @@ export const sortData = (data, sortBy, sortOrder) => {
   }   
   else {
     return data;
-  }
+  } 
+}
+
+// Poderes y daño de poderes
+
+export const attackName = (attack) => {
+  const name = attack.map(name => name.name);
+  return name;
+};
+
+export const calculateDmgStab = (specialAttack, typePokemon) => {
+  const result = specialAttack.map((obj) => {
+    let stab = 0;
+    const damage = Number(obj['base-damage']); 
+    if (typePokemon.includes(obj.type)) {
+      stab = ((damage * 0.2)); 
+    }    
+    return Number((stab + damage))
+  });
+  return result  
+}; 
+
+export const calculateDps = (specialAttack, pokemonType) => {
+  const result = specialAttack.map((obj) => {
+    let stab = 0;
+
+    const attackType = obj.type;
+    const baseDamage = Number(obj['base-damage']);
+    const attackDuration = Number(obj['move-duration-seg']);
  
+    if (pokemonType.includes(attackType)) {
+       stab = Number((baseDamage * 0.2)) ; 
+    }
+
+    return Math.round(((stab + baseDamage) / attackDuration)); 
+  });
+  return result  
+};
+
+export const calculateEps = (specialAttack) => {
+
+  const result = specialAttack.map((obj) => {
+    const moveDuration = Number(obj['move-duration-seg']); 
+    const energy = Number(obj.energy);
+
+    return (energy / moveDuration); 
+  });
+  return result   
 };
  
