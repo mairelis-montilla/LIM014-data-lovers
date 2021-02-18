@@ -14,11 +14,11 @@
 <body>
 
   <header class="header-container">
+    <img  class="logo" src="./images/logo.png" alt="logo-pokemon">
     <nav class="nav-container">
-      <h1 class="title">PokeDex</h1>
       <ul class="list-container">
-        <li class="list" id="listHomePokemon">Inicio</li>
-        <li class="list" id="listIndexPokemon">Pokemon</li> 
+        <li class="list" id="listHomePokemon">Home</li>
+        <li class="list" id="listIndexPokemon">Pokedex</li>
         <li class="list" id="listTopPokemon">TOP 10</li>
       </ul>
     </nav>
@@ -27,10 +27,10 @@
 
   <section class="search-container">
 
-    <input type="text" id="searchInput" class="input-search" placeholder="Buscar">
-    <label for="types"> Tipos: </label>
+    <input type="text" id="searchInput" class="input-search" placeholder="Search">
     <select type="text" id="types" class="input-search">
-      <option value="all" selected="selected">Todos</option>
+      <option value="Types" disabled selected="selected">Filter by Types</option>
+      <option value="all" >Todos</option>
       <option value="bug">Bug</option>
       <option value="dark">Dark</option>
       <option value="dragon"> Dragon</option>
@@ -51,44 +51,41 @@
       <option value="water"> Water</option>
     </select>
 
-    <label for="region"> Región: </label>
-    <select type="text"  id="region" class="input-search">
-      <option value="all" selected="selected">Todos</option>
+    <select type="text" id="region" class="input-search">
+      <option value="Region" disabled selected="selected">Filter by Region</option>
+      <option value="all" >Todos</option>
       <option value="kanto">Kanto</option>
       <option value="johto">Johto</option>
     </select>
-    <label for="order"> Orden:  </label>
-    <select type="text" id="order" class="input-search">    
-        <option value='name' selected="selected">Nombre</option>   
-        <option value='num'>Número</option>   
-        <option value='cp'>CP</option>   
-        <option value='hp'>HP</option>  
-       
-    </select> 
-    
-    <input  type="image" id="iconArrow"
-            value="Asc" 
-            type="Asc" 
-            src= "./data/images/arrowBottom.svg"
-            alt="OrderBy"  
-            width="48" 
-            height="48">   
+    <select type="text" id="order" class="input-search">
+      <option value="Order" disabled selected="selected">Order by</option>
+      <option value="name" >Nombre</option>
+      <option value="num">Número</option>
+      <option value="cp">CP</option>
+      <option value="hp">HP</option>
+
+    </select>
+
+    <input type="image" id="iconArrow" value="Asc" src="./data/images/arrowBottom.svg" alt="OrderBy"
+      width="48" height="48">
 
 
   </section>
 
- 
-  
+
   <div class="modal hide" id="modal">
-    
-  <button id="closeModal">Cerrar</button>
-    <div class="modal-container"> 
-      <section id="modal-information">
+
+    <div class="modal-container">
+      <section class="content-end">
+        <button class="closeModal">x</button>
+      </section>
+      <section class="modal-information">
       </section>
     </div>
-    </div>
+  </div>
 
   <main class="mainPokemon" id="mainPokemon">
+<<<<<<< HEAD
 <<<<<<< HEAD
  
  
@@ -105,6 +102,9 @@
         </section>
       </div>
       </div>
+>>>>>>> origin/Develop-mai
+=======
+
 >>>>>>> origin/Develop-mai
   </main>
 
