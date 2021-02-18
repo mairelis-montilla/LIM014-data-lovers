@@ -155,8 +155,7 @@ const showAllPokemon = (allPokemon) => {
         ${templatePrevEvolutions ? templatePrevEvolutions : ''}
         </article>
         </section>
-        </section>
-         `
+        </section> `
       });
 
 
