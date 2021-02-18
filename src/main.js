@@ -50,7 +50,11 @@ let sortByValue;
 let typeValue;
 
  // MOSTRAR TODOS LOS POKEMONS
+<<<<<<< HEAD
+ 
+=======
 
+>>>>>>> origin/Develop-mai
 const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => {
     const container = document.createElement('section');
@@ -159,6 +163,12 @@ const showAllPokemon = (allPokemon) => {
         <article class=rows>
         ${templateNextEvolution ? templateNextEvolution : ''}
         ${templatePrevEvolutions ? templatePrevEvolutions : ''}
+<<<<<<< HEAD
+        </article>
+        </section>
+        </section> `
+      });
+=======
               </article>
               </section>
           </div>
@@ -166,6 +176,7 @@ const showAllPokemon = (allPokemon) => {
           </section>
 
       `});
+>>>>>>> origin/Develop-mai
 
 
 
