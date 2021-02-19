@@ -81,16 +81,19 @@ const showAllPokemon = (allPokemon) => {
 
         let nextEvolutions = getNextEvolution(pokemon.evolution['next-evolution']);
         templateNextEvolution = nextEvolutions.map(elemento => {
-          return `<div><p> ${elemento.name}</p>
-          <img  class="image-pokemon" src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png"> <p> Candy Cost: ${elemento['candy-cost']}</p></div>`
+          return `<div>
+          <img  class="image-pokemon" src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
+          <h1 class="subtitle">${elemento.name}</h1>
+          <p> Candy Cost ${elemento['candy-cost']}</p></div>`
             })
       }
       if(pokemon.evolution['prev-evolution']){
           let prevEvolutions = getPrevEvolution(pokemon.evolution['prev-evolution']);
           templatePrevEvolutions =prevEvolutions.map(elemento =>{
-          return`<div><p> ${elemento.name}</p>
-          <img class="image-pokemon"src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
-          <p> Candy Cost: ${elemento['candy-cost']} </p></div>`
+            return`<div>
+            <img class="image-pokemon"src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
+            <h1 class="subtitle">${elemento.name}</h1>
+          <p> Candy Cost ${elemento['candy-cost']} </p></div>`
           })
       }
     }
@@ -112,11 +115,11 @@ const showAllPokemon = (allPokemon) => {
                 </span>
                   <article class="column" >
                     <h2 class="subtitle">Stats </h2>
-                        <p> Max-HP:${pokemon.stats['max-hp']} </p>
-                        <p> Max-CP:${pokemon.stats['max-cp']} </p>
-                        <p> Base-attack:${pokemon.stats['base-attack']} </p>
-                        <p> Base-Defense: ${pokemon.stats['base-defense']}</p>
-                        <p> Base-Stamina:${pokemon.stats['base-stamina']}</p>
+                        <p> Max-HP<br>${pokemon.stats['max-hp']} </p>
+                        <p> Max-CP<br>${pokemon.stats['max-cp']} </p>
+                        <p> Base-attack<br>${pokemon.stats['base-attack']} </p>
+                        <p> Base-Defense<br>${pokemon.stats['base-defense']}</p>
+                        <p> Base-Stamina<br>${pokemon.stats['base-stamina']}</p>
                       </article>
 
           </div>
@@ -124,20 +127,20 @@ const showAllPokemon = (allPokemon) => {
             <p> ${pokemon.about}</p>
 
             <section>
+            <h2 class="subtitle">size</h2>
               <article class="rows">
-              <h2 class="subtitle">size</h2>
                     <p>Height <br>${pokemon.size['height']} </p>
                     <p>Weight <br>${pokemon.size['weight']} </p>
                     <p>Eggs <br> ${pokemon.egg}</p>
                   </article>
+                  <h2 class="subtitle">Resistant:</h2>
                     <article class=rows>
-              <h2 class="subtitle">Resistant:</h2>
               ${pokemon.resistant.map(elemento => {
                 return `<img  class="icon-type" src="./images/${elemento}.png">`
                   })}
               </article>
+              <h2 class="subtitle">Weaknesses:</h2>
             <article class=rows>
-            <h2 class="subtitle">Weaknesses:</h2>
             ${pokemon.weaknesses.map(elemento => {
               return `<img  class="icon-type" src="./images/${elemento}.png">`
                 })}
