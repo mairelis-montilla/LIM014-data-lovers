@@ -21,7 +21,6 @@ const modalShow = document.getElementById('modal');
 const modalContainer = document.querySelector('.modal-information');
 
 //NAVEGACIÓN ENTRE PESTAÑAS
-const listPokemonIndex = document.getElementById('listIndexPokemon');
 const listTopPokemon = document.getElementById('listTopPokemon');
 const listHomePokemon = document.getElementById('listHomePokemon');
 
@@ -31,10 +30,6 @@ listHomePokemon.addEventListener('click', () => {
 listTopPokemon.addEventListener('click', () => {
   window.location.assign('./top.html');
 });
-
-listPokemonIndex.addEventListener('click', () =>
-  window.location.assign('./pokemon.html')
-);
 
 // modal
 closeModal.addEventListener('click', hideModal);
@@ -50,11 +45,6 @@ let sortByValue;
 let typeValue;
 
  // MOSTRAR TODOS LOS POKEMONS
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> origin/Develop-mai
 const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => {
     const container = document.createElement('section');
@@ -120,7 +110,7 @@ const showAllPokemon = (allPokemon) => {
                   return `<img  class="icon-type" src="./images/${elemento}.png">`
                   })}
                 </span>
-                  <article >
+                  <article class="column" >
                     <h2 class="subtitle">Stats </h2>
                         <p> Max-HP:${pokemon.stats['max-hp']} </p>
                         <p> Max-CP:${pokemon.stats['max-cp']} </p>
@@ -140,13 +130,7 @@ const showAllPokemon = (allPokemon) => {
                     <p>Weight <br>${pokemon.size['weight']} </p>
                     <p>Eggs <br> ${pokemon.egg}</p>
                   </article>
-            <article class="rows">
-            <h2 class="subtitle">Type:</h2>
-            ${pokemon.type.map(elemento => {
-              return `<img  class="icon-type" src="./images/${elemento}.png">`
-              })}
-                </article>
-            <article class=rows>
+                    <article class=rows>
               <h2 class="subtitle">Resistant:</h2>
               ${pokemon.resistant.map(elemento => {
                 return `<img  class="icon-type" src="./images/${elemento}.png">`
@@ -163,12 +147,6 @@ const showAllPokemon = (allPokemon) => {
         <article class=rows>
         ${templateNextEvolution ? templateNextEvolution : ''}
         ${templatePrevEvolutions ? templatePrevEvolutions : ''}
-<<<<<<< HEAD
-        </article>
-        </section>
-        </section> `
-      });
-=======
               </article>
               </section>
           </div>
@@ -176,7 +154,6 @@ const showAllPokemon = (allPokemon) => {
           </section>
 
       `});
->>>>>>> origin/Develop-mai
 
 
 

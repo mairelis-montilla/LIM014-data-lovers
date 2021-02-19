@@ -115,12 +115,6 @@ const showAllPokemon = (allPokemon) => {
                     <p>Weight <br>${pokemon.size['weight']} </p>
                     <p>Eggs <br> ${pokemon.egg}</p>
                   </article>
-            <article class="rows">
-            <h2 class="subtitle">Type:</h2>
-            ${pokemon.type.map(elemento => {
-              return `<img  class="icon-type" src="./images/${elemento}.png">`
-              })}
-                </article>
             <article class=rows>
               <h2 class="subtitle">Resistant:</h2>
               ${pokemon.resistant.map(elemento => {

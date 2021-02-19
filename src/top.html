@@ -16,23 +16,23 @@
 <body>
 
   <header class="header-container">
-    <img  class="logo" src="./images/logo.png" alt="logo-pokemon">
+    <img class="logo" src="./images/logo.png" alt="logo-pokemon">
     <nav class="nav-container">
       <ul class="list-container">
         <li class="list" id="listHomePokemon">Home</li>
-        <li class="list" id="listIndexPokemon">Pokedex</li>
+        <li class="list list-stay" id="listIndexPokemon">Pokedex</li>
+        <li class="list" id="listTopPokemon">Top 10</li>
       </ul>
     </nav>
+    <section class="search-container top10">
+      <select class="input-search" name="staws" id="staws">
+        <option value="more">Filter More staws </option>
+        <option selected value="less">Filter less staws </option>
+      </select>
+      <input type="button" class="btn-M" value="Show grafica">
+    </section>
 
   </header>
-  <section class="search-container top10">
-    <select  class="input-search"name="staws" id="staws">
-      <option  value="more">Filter More staws </option>
-      <option selected value="less">Filter less staws </option>
-    </select>
-    <input type="button"  class="btn-M" value="Show grafica">
-  </section>
-
 
   <div class="modal hide" id="modal">
 

@@ -14,64 +14,60 @@
 <body>
 
   <header class="header-container">
-    <img  class="logo" src="./images/logo.png" alt="logo-pokemon">
+    <img class="logo" src="./images/logo.png" alt="logo-pokemon">
     <nav class="nav-container">
       <ul class="list-container">
         <li class="list" id="listHomePokemon">Home</li>
-        <li class="list" id="listIndexPokemon">Pokedex</li>
-        <li class="list" id="listTopPokemon">TOP 10</li>
+        <li class="list list-stay" id="listIndexPokemon">Pokedex</li>
+        <li class="list" id="listTopPokemon">Top 10</li>
       </ul>
     </nav>
 
+    <section class="search-container">
+
+      <input type="text" id="searchInput" class="input-search" placeholder="Search">
+      <select type="text" id="types" class="input-search">
+        <option value="Types" disabled selected="selected">Filter by Types</option>
+        <option value="all">All</option>
+        <option value="bug">Bug</option>
+        <option value="dark">Dark</option>
+        <option value="dragon"> Dragon</option>
+        <option value="electric">Electric</option>
+        <option value="fairy">Fairy</option>
+        <option value="fighting">Fighting</option>
+        <option value="fire">Fire</option>
+        <option value="flying">Flying</option>
+        <option value="ghost">Ghost</option>
+        <option value="grass">Grass</option>
+        <option value="ground">Ground</option>
+        <option value="ice">Ice</option>
+        <option value="normal">Normal</option>
+        <option value="poison">Poison</option>
+        <option value="psychic">Psychic</option>
+        <option value="rock">Rock</option>
+        <option value="steel">Steel</option>
+        <option value="water"> Water</option>
+      </select>
+
+      <select type="text" id="region" class="input-search">
+        <option value="Region" disabled selected="selected">Filter by Region</option>
+        <option value="all">All</option>
+        <option value="kanto">Kanto</option>
+        <option value="johto">Johto</option>
+      </select>
+      <select type="text" id="order" class="input-search search-s">
+        <option value="Order" disabled selected="selected">Order by</option>
+        <option value="name">Name</option>
+        <option value="num">Number</option>
+        <option value="cp">CP</option>
+        <option value="hp">HP</option>
+      </select>
+      <input type="image" id="iconArrow" value="Asc" src="./data/images/arrowBottom.svg" alt="OrderBy" width="48"
+        height="48">
+
+    </section>
+
   </header>
-
-  <section class="search-container">
-
-    <input type="text" id="searchInput" class="input-search" placeholder="Search">
-    <select type="text" id="types" class="input-search">
-      <option value="Types" disabled selected="selected">Filter by Types</option>
-      <option value="all" >Todos</option>
-      <option value="bug">Bug</option>
-      <option value="dark">Dark</option>
-      <option value="dragon"> Dragon</option>
-      <option value="electric">Electric</option>
-      <option value="fairy">Fairy</option>
-      <option value="fighting">Fighting</option>
-      <option value="fire">Fire</option>
-      <option value="flying">Flying</option>
-      <option value="ghost">Ghost</option>
-      <option value="grass">Grass</option>
-      <option value="ground">Ground</option>
-      <option value="ice">Ice</option>
-      <option value="normal">Normal</option>
-      <option value="poison">Poison</option>
-      <option value="psychic">Psychic</option>
-      <option value="rock">Rock</option>
-      <option value="steel">Steel</option>
-      <option value="water"> Water</option>
-    </select>
-
-    <select type="text" id="region" class="input-search">
-      <option value="Region" disabled selected="selected">Filter by Region</option>
-      <option value="all" >Todos</option>
-      <option value="kanto">Kanto</option>
-      <option value="johto">Johto</option>
-    </select>
-    <select type="text" id="order" class="input-search">
-      <option value="Order" disabled selected="selected">Order by</option>
-      <option value="name" >Nombre</option>
-      <option value="num">Número</option>
-      <option value="cp">CP</option>
-      <option value="hp">HP</option>
-
-    </select>
-
-    <input type="image" id="iconArrow" value="Asc" src="./data/images/arrowBottom.svg" alt="OrderBy"
-      width="48" height="48">
-
-
-  </section>
-
 
   <div class="modal hide" id="modal">
 
@@ -85,11 +81,6 @@
   </div>
 
   <main class="mainPokemon" id="mainPokemon">
-<<<<<<< HEAD
-<<<<<<< HEAD
- 
- 
-=======
 
 
 
@@ -101,11 +92,8 @@
         <section id="modal-information">
         </section>
       </div>
-      </div>
->>>>>>> origin/Develop-mai
-=======
+    </div>
 
->>>>>>> origin/Develop-mai
   </main>
 
 
