@@ -26,11 +26,12 @@
 
   </header>
   <section class="search-container top10">
-    <select  class="input-search"name="staws" id="staws">
-      <option  value="more">Filter More staws </option>
-      <option selected value="less">Filter less staws </option>
+    <select  class="input-search" name="staws" id="order">
+      <option selected value="spawn">Top 10 - Spawns %</option> 
     </select>
-    <input type="button"  class="btn-M" value="Show grafica">
+    <input type="image" id="iconArrow" value="Desc" src="./data/images/arrowTop.svg" alt="OrderBy"
+      width="48" height="48">
+    <input type="button" id="modalPokeType" class="btn-M" value="PokeTypes Stats">
   </section>
 
 
@@ -44,6 +45,19 @@
       </section>
     </div>
   </div>
+
+
+  <div class="modal hide" id="modal">
+
+    <div class="modal-container">
+      <section class="content-end">
+        <button class="closeModal">x</button>
+      </section>
+      <section class="modal-information-stats">
+      </section>
+    </div>
+  </div>
+
 
   <main class="mainPokemon" id="mainPokemon">
 

@@ -1,0 +1,93 @@
+<html>
+
+<head>
+  <!--Load the AJAX API-->
+  <script src="googleCharts.js" type="module"></script>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="module">
+
+    import data from './data/pokemon/pokemon.js';
+    const pokemonData = data.pokemon;   
+
+    // optimizar la carga haciendo un filtrado que solo contenga los tipos
+    let type = []; 
+    pokemonData.forEach(pokemon =>  
+    type.push(pokemon.type) 
+    ) 
+
+    // función a invocar para el conteo de tipos
+
+    function countTypes(data, valuetype) {
+        const type = valuetype.toLowerCase();
+        return data.filter(a => a.includes(type)).length;
+    }
+ 
+
+    google.charts.load("current", {
+      packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", {
+          role: "style"
+        }],
+        ["Bug", countTypes(type, 'bug'), "#ffcdb0"],
+        ["Dark", countTypes(type, 'Dark'), "#b3acac"],
+        ["Dragon", countTypes(type, 'Dragon'), "#ff823a"],
+        ["Electric", countTypes(type, 'Electric'), "#f7e366"],
+        ["Fairy", countTypes(type, 'Fairy'), "color: #ffcece"],
+        ["Fighting", countTypes(type, 'Fighting'), "#ff6666"],
+        ["Fire", countTypes(type, 'Fire'), "color: rgb(253, 86, 86)"],
+        ["Flying", countTypes(type, 'Flying'), "#7885FF"],
+        ["Ghost", countTypes(type, 'Ghost'), "#C67DFF"],
+        ["Grass", countTypes(type, 'Grass'), "color: #e5e4e2"],
+        ["Ground", countTypes(type, 'Ground'), "#fa9434"],
+        ["Ice", countTypes(type, 'Ice'), "#2d979e"],
+        ["Normal", countTypes(type, 'Normal'), "#BBAFAF"],
+        ["Poison", countTypes(type, 'Poison'), "#543a63"],
+        ["Psychic", countTypes(type, 'Psychic'), "color: rgb(133, 6, 97)"],
+        ["Rock", countTypes(type, 'Rock'), "color: rgb(227, 170, 102)"],
+        ["Steel", countTypes(type, 'Steel'), "#256A98"],
+        ["Water", countTypes(type, 'Water'), "#6BECF2"]
+
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+        {
+          calc: "stringify",
+          sourceColumn: 1,
+          type: "string",
+          role: "annotation"
+        },
+        2
+      ]);
+
+      var options = {
+        title: "Quantity of Pokemons by type",
+        width: 800,
+        height: 800,
+        bar: {
+          groupWidth: "95%"
+        },
+        legend: {
+          position: "none"
+        },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+    }
+  </script>
+  <div id="barchart_values" style="width: 900px; height: 300px;"></div>
+</head>
+
+<body>
+  <!--Div that will hold the pie chart-->
+  <div id="chart_div"></div>
+</body>
+
+</html>

@@ -2,7 +2,7 @@ import data from './data/pokemon/pokemon.js';
 import{sortData} from './data.js'
 
 
-const mainContainer= document.getElementById('mainPokemon')
+const cardContainer= document.getElementById('mainPokemon')
 const pokemons = data.pokemon;
 const listPokemonIndex = document.getElementById('listIndexPokemon');
 const listHomePokemon = document.getElementById('listHomePokemon');
@@ -24,6 +24,8 @@ listPokemonIndex.addEventListener('click', () =>
   window.location.assign('./pokemon.html')
 ); 
 
+
+
 const showAllPokemon = (allPokemon) => {
   
   let count = 0;
@@ -34,7 +36,7 @@ const showAllPokemon = (allPokemon) => {
   if (count < 11 ) {
     let container = document.createElement('section');
     container.className = 'card-contrainer ' + pokemon.type[0];
-    mainContainer.appendChild(container).innerHTML = `
+    cardContainer.appendChild(container).innerHTML = `
     <article>
     <section class="name-card_container">
     <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
@@ -150,9 +152,52 @@ const showAllPokemon = (allPokemon) => {
 
   })
 };
+
+// Modal Graphic
+ 
+// Ordenar
+
+const iconArrow = document.querySelector('[id="iconArrow"]');
+const selectOrderBy = document.querySelector('[id="order"]'); 
+
+let orderBy;
+let sortByValue; 
+
+iconArrow.addEventListener('click', () => {
+  iconArrow.src = toggleImg();
+  iconArrow.value = valueImg();
+  sortByArrow();
+})
+
+function toggleImg() {
+  let imgSRC = iconArrow.src;
+  imgSRC.includes('/data/images/arrowBottom.svg') ?
+  imgSRC = '/data/images/arrowTop.svg' : imgSRC = '/data/images/arrowBottom.svg';
+  return imgSRC;
+}
+
+function valueImg() {
+  let imgValue = iconArrow.value;
+  imgValue.includes('Asc') ? imgValue = 'Desc' : imgValue = 'Asc';
+  return imgValue;
+}
+
+
+// Ordenar Data
+selectOrderBy.addEventListener('change', sortByArrow);
+
  
 
+
+function sortByArrow() {
+  sortByValue = selectOrderBy.value; 
+  orderBy = iconArrow.value;
+  cardContainer.innerHTML = ''; 
+  showAllPokemon(sortData(pokemons, sortByValue, orderBy));
+}
+
 showAllPokemon(sortData(pokemons, 'spawn', 'Desc'));
+
 function getNextEvolution(elemento) {
   let nextEvolution = elemento[0]['next-evolution'];
   const evolutions =[];
@@ -162,6 +207,9 @@ function getNextEvolution(elemento) {
   evolutions.push(elemento[0]);
   return evolutions.reverse();
 }
+
+
+
 function getPrevEvolution(elemento) {
   let prevEvolution = elemento[0]['prev-evolution'];
   const evolutions =[];

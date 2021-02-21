@@ -5,6 +5,7 @@ import {
   sortData,
 
 } from './data.js';
+
 import data from './data/pokemon/pokemon.js';
 
 
@@ -42,6 +43,7 @@ closeModal.addEventListener('click', hideModal);
 function hideModal() {
   modalShow.classList.toggle('hide');
 }
+
 // global filter variables
 let regionValue;
 let typeSelected;
