@@ -28,11 +28,21 @@ const showAllPokemon = (allPokemon) => {
   
   let count = 0;
 
-  allPokemon.forEach(pokemon => { 
+  allPokemon.forEach(pokemon => {
   count++;
 
   if (count < 11 ) {
-    let container = document.createElement('section');
+    let container = document.createElement('section'); 
+     let pokemonTypes = pokemon.type.map(elemento => {
+      return `<img  class="icon-type" src="./images/${elemento}.png">`
+    });
+    let pokemonResistant = pokemon.resistant.map(elemento => {
+      return `<img  class="icon-type" src="./images/${elemento}.png">`
+        });
+        let pokemonWeaknesses = pokemon.weaknesses.map(elemento => {
+          return `<img  class="icon-type" src="./images/${elemento}.png">`
+            });
+
     container.className = 'card-contrainer ' + pokemon.type[0];
     mainContainer.appendChild(container).innerHTML = `
     <article>
@@ -48,10 +58,7 @@ const showAllPokemon = (allPokemon) => {
             <p class="p">Spawn <br> ${pokemon['spawn-chance']}</p>
           </div>
               <div class="rows">
-                ${pokemon.type.map(elemento => {
-        return `<img  class="icon-type" src="./images/${elemento}.png">`
-      })
-        }
+                ${pokemonTypes.join('')}
               </div>
               <button class="btn-secondary">About</button>
               </article>
@@ -91,9 +98,7 @@ const showAllPokemon = (allPokemon) => {
             <h1 class="subtitle">${pokemon.name}</h1>
                 <p>#${pokemon.num}</p>
                 <span class="rows">
-                ${pokemon.type.map(elemento => {
-                  return `<img  class="icon-type" src="./images/${elemento}.png">`
-                  })}
+                ${pokemonTypes.join('')}
                 </span>
                   <article >
                     <h2 class="subtitle">Stats </h2>
@@ -117,21 +122,17 @@ const showAllPokemon = (allPokemon) => {
                   </article>
             <article class=rows>
               <h2 class="subtitle">Resistant:</h2>
-              ${pokemon.resistant.map(elemento => {
-                return `<img  class="icon-type" src="./images/${elemento}.png">`
-                  })}
+              ${pokemonResistant.join('')}
               </article>
             <article class=rows>
             <h2 class="subtitle">Weaknesses:</h2>
-            ${pokemon.weaknesses.map(elemento => {
-              return `<img  class="icon-type" src="./images/${elemento}.png">`
-                })}
+            ${pokemonWeaknesses.join('')}
 
         </article>
         <h2 class="subtitle">Evolution </h2>
         <article class=rows>
-        ${templateNextEvolution ? templateNextEvolution : ''}
-        ${templatePrevEvolutions ? templatePrevEvolutions : ''}
+        ${templateNextEvolution ? templateNextEvolution.join(''): ''}
+        ${templatePrevEvolutions ? templatePrevEvolutions.join('') : ''}
               </article>
               </section>
           </div>
@@ -144,7 +145,7 @@ const showAllPokemon = (allPokemon) => {
 
   })
 };
- 
+
 
 showAllPokemon(sortData(pokemons, 'spawn', 'Desc'));
 function getNextEvolution(elemento) {
