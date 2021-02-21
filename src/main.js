@@ -3,6 +3,9 @@ import {
   filterDataByName,
   filterDataByRegion,
   sortData,
+  calculateDps,
+  calculateEps,
+  calculateDmgStab,
 
 } from './data.js';
 

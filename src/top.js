@@ -1,5 +1,9 @@
 import data from './data/pokemon/pokemon.js';
-import{sortData} from './data.js'
+import{sortData,
+  attackName,
+  calculateDps,
+  calculateEps,
+  calculateDmgStab,} from './data.js'
 
 
 const cardContainer= document.getElementById('mainPokemon')
@@ -7,13 +11,37 @@ const pokemons = data.pokemon;
 const listPokemonIndex = document.getElementById('listIndexPokemon');
 const listHomePokemon = document.getElementById('listHomePokemon');
 const closeModal = document.querySelector('.closeModal');
+const closeModalStats = document.querySelector('.closeModalStats');
 const modalShow = document.getElementById('modal');
+const btnPokemonStats = document.querySelector('#modalPokeType');
+const modalShowStats = document.querySelector('#modal-stats');
 const modalContainer = document.querySelector('.modal-information');
-closeModal.addEventListener('click', hideModal);
 
+
+
+ 
+
+// modal stats
+
+
+btnPokemonStats.addEventListener('click', hideModalStats); 
+ 
+
+function hideModalStats() {
+  modalShow.classList.toggle('hide'); 
+  modalContainer.innerHTML = `<iframe style="width:100%; height:400px" src="typeChart.html" title="Stats"></iframe>
+  `; 
+}
+ 
+
+// modal pokemon
 function hideModal() {
   modalShow.classList.toggle('hide');
 }
+
+closeModal.addEventListener('click', hideModal);
+
+
 //NAVEGACIÓN ENTRE PESTAÑAS
 listHomePokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
@@ -130,10 +158,21 @@ const showAllPokemon = (allPokemon) => {
                   })}
               </article>
             <article class=rows>
-            <h2 class="subtitle">Weaknesses:</h2>
+            <h2 class="subtitle">Poderes:</h2>
             ${pokemon.weaknesses.map(elemento => {
               return `<img  class="icon-type" src="./images/${elemento}.png">`
                 })}
+
+        </article>  
+        <table> 
+               
+
+        <tr> ${showTable(attackName(pokemon['quick-move']))}</tr>
+        <tr> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
+        <tr> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
+        <tr> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
+
+      </table>
 
         </article>
         <h2 class="subtitle">Evolution </h2>
@@ -218,3 +257,10 @@ function getPrevEvolution(elemento) {
   }
   evolutions.push(elemento[0]);
   return evolutions.reverse();}
+
+function showTable(data) {
+  const table = data.map(elemento =>  { 
+    return `<td>${elemento}</td>`} 
+  )
+  return table;
+}

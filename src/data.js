@@ -127,7 +127,7 @@ export const calculateEps = (specialAttack) => {
     const moveDuration = Number(obj['move-duration-seg']); 
     const energy = Number(obj.energy);
 
-    return (energy / moveDuration); 
+    return Math.round(energy / moveDuration); 
   });
   return result   
 };
