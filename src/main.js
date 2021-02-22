@@ -82,6 +82,7 @@ const showAllPokemon = (allPokemon) => {
     const btnModal = container.querySelector('button');
     let templateNextEvolution;
     let templatePrevEvolutions;
+    const pokemonNotEvolution = `<p> I don't have evolutions</p>`;
 
     if (pokemon.evolution) {
 
@@ -150,6 +151,7 @@ const showAllPokemon = (allPokemon) => {
         </article>
         <h2 class="subtitle">Evolution </h2>
         <article class=rows>
+        ${templateNextEvolution === undefined && templatePrevEvolutions === undefined ? pokemonNotEvolution : ''}
         ${templateNextEvolution ? templateNextEvolution.join('') : ''}
         ${templatePrevEvolutions ? templatePrevEvolutions.join(''): ''}
               </article>
