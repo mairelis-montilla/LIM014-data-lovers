@@ -5,6 +5,7 @@
   <script type="module">
 
     import data from './data/pokemon/pokemon.js';
+    import { countTypes } from './data.js';
     const pokemonData = data.pokemon;   
 
     // optimizar la carga haciendo un filtrado que solo contenga los tipos
@@ -13,12 +14,7 @@
     type.push(pokemon.type) 
     ) 
 
-    // función a invocar para el conteo de tipos
-
-    function countTypes(data, valuetype) {
-        const type = valuetype.toLowerCase();
-        return data.filter(a => a.includes(type)).length;
-    }
+     
  
 
     google.charts.load("current", {
@@ -64,9 +60,9 @@
       ]);
 
       var options = {
-        title: "Quantity of Pokemons by type",
+        title: "Average of Pokemons by type",
         width: '100%',
-        height: 360,
+        height: 550,
         bar: {
           groupWidth: "95%"
         },

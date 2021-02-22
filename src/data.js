@@ -28,7 +28,7 @@ export const filterDataByRegion = (data, condition) => {
 export const filterDataByNum = (data, condition) => {
   return data.filter(dataFilter => condition.includes(parseInt(dataFilter.num)))
 }; 
-
+  
 
 
 export const sortData = (data, sortBy, sortOrder) => {
@@ -132,3 +132,27 @@ export const calculateEps = (specialAttack) => {
   return result   
 };
  
+
+// Estadisticas
+
+// función que suma el total de spawm de los pokemones por su tipo y luego los divide por el total de pokemons de ese tipo
+
+export const countTypesSpawn = (data, valuetype) =>  {    
+  const type = valuetype.toLowerCase();
+  let spawnTotal = 0;
+  let typeCount = 0;
+  data.forEach(pokemon => {  
+      if(pokemon.type.includes(type)){
+      spawnTotal += Number(pokemon.spawn); 
+      typeCount++;
+    }})    
+  return Number((spawnTotal/typeCount).toFixed(2)); 
+  }
+
+
+// función a invocar para el conteo de tipos
+
+export const countTypes = (data, valuetype) =>  {  
+    const type = valuetype.toLowerCase();
+    return data.filter(a => a.includes(type)).length;
+}
