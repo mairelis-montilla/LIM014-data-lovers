@@ -26,9 +26,10 @@ const modalShow = document.getElementById('modal');
 const modalContainer = document.querySelector('.modal-information');
 
 //NAVEGACIÓN ENTRE PESTAÑAS
-const listPokemonIndex = document.getElementById('listIndexPokemon');
 const listTopPokemon = document.getElementById('listTopPokemon');
 const listHomePokemon = document.getElementById('listHomePokemon');
+const  pokemonNotFount =`<section class="column"><h2 class="slogan">Ups!! pokemon not found</h2>
+<img src="./images/pokemon.gif" alt="pokemon"> </section>`
 
 listHomePokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
@@ -36,10 +37,6 @@ listHomePokemon.addEventListener('click', () => {
 listTopPokemon.addEventListener('click', () => {
   window.location.assign('./top.html');
 });
-
-listPokemonIndex.addEventListener('click', () =>
-  window.location.assign('./pokemon.html')
-);
 
 // modal
 closeModal.addEventListener('click', hideModal);
@@ -53,7 +50,6 @@ let regionValue;
 let typeSelected;
 let orderBy;
 let sortByValue;
-let typeValue;
 
  // MOSTRAR TODOS LOS POKEMONS
  
@@ -61,6 +57,16 @@ const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => {
     const container = document.createElement('section');
     container.className = 'card-contrainer ';
+    let pokemonTypes = pokemon.type.map(elemento => {
+      return `<img  class="icon-type" src="./images/${elemento}.png">`
+    });
+    let pokemonResistant = pokemon.resistant.map(elemento => {
+      return `<img  class="icon-type" src="./images/${elemento}.png">`
+        });
+        let pokemonWeaknesses = pokemon.weaknesses.map(elemento => {
+          return `<img  class="icon-type" src="./images/${elemento}.png">`
+            });
+
     cardContainer.appendChild(container).innerHTML = `
     <article>
     <section class="name-card_container">
@@ -74,10 +80,7 @@ const showAllPokemon = (allPokemon) => {
             <p class="p"id="valueCP"> Max-CP  <br> ${pokemon.stats['max-cp']}</p>
           </div>
               <div class="rows">
-                ${pokemon.type.map(elemento => {
-        return `<img  class="icon-type" src="./images/${elemento}.png">`
-      })
-        }
+              ${pokemonTypes.join('')}
               </div>
               <button class="btn-secondary">About</button>
               </article>
@@ -86,6 +89,7 @@ const showAllPokemon = (allPokemon) => {
     const btnModal = container.querySelector('button');
     let templateNextEvolution;
     let templatePrevEvolutions;
+    const pokemonNotEvolution = '<p> I don\'t have evolutions</p>';
 
     if (pokemon.evolution) {
 
@@ -93,16 +97,19 @@ const showAllPokemon = (allPokemon) => {
 
         let nextEvolutions = getNextEvolution(pokemon.evolution['next-evolution']);
         templateNextEvolution = nextEvolutions.map(elemento => {
-          return `<div><p> ${elemento.name}</p>
-          <img  class="image-pokemon" src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png"> <p> Candy Cost: ${elemento['candy-cost']}</p></div>`
+          return `<div>
+          <img  class="image-pokemon" src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
+          <h1 class="subtitle">${elemento.name}</h1>
+          <p> Candy Cost ${elemento['candy-cost']}</p></div>`
             })
       }
       if(pokemon.evolution['prev-evolution']){
           let prevEvolutions = getPrevEvolution(pokemon.evolution['prev-evolution']);
           templatePrevEvolutions =prevEvolutions.map(elemento =>{
-          return`<div><p> ${elemento.name}</p>
-          <img class="image-pokemon"src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
-          <p> Candy Cost: ${elemento['candy-cost']} </p></div>`
+            return`<div>
+            <img class="image-pokemon"src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
+            <h1 class="subtitle">${elemento.name}</h1>
+          <p> Candy Cost ${elemento['candy-cost']} </p></div>`
           })
       }
     }
@@ -118,17 +125,15 @@ const showAllPokemon = (allPokemon) => {
             <h1 class="subtitle">${pokemon.name}</h1>
                 <p>#${pokemon.num}</p>
                 <span class="rows">
-                ${pokemon.type.map(elemento => {
-                  return `<img  class="icon-type" src="./images/${elemento}.png">`
-                  })}
+                ${pokemonTypes.join('')}
                 </span>
-                  <article >
+                  <article class="column" >
                     <h2 class="subtitle">Stats </h2>
-                        <p> Max-HP:${pokemon.stats['max-hp']} </p>
-                        <p> Max-CP:${pokemon.stats['max-cp']} </p>
-                        <p> Base-attack:${pokemon.stats['base-attack']} </p>
-                        <p> Base-Defense: ${pokemon.stats['base-defense']}</p>
-                        <p> Base-Stamina:${pokemon.stats['base-stamina']}</p>
+                        <p> Max-HP<br>${pokemon.stats['max-hp']} </p>
+                        <p> Max-CP<br>${pokemon.stats['max-cp']} </p>
+                        <p> Base-attack<br>${pokemon.stats['base-attack']} </p>
+                        <p> Base-Defense<br>${pokemon.stats['base-defense']}</p>
+                        <p> Base-Stamina<br>${pokemon.stats['base-stamina']}</p>
                       </article>
 
           </div>
@@ -136,29 +141,19 @@ const showAllPokemon = (allPokemon) => {
             <p> ${pokemon.about}</p>
 
             <section>
+            <h2 class="subtitle">size</h2>
               <article class="rows">
-              <h2 class="subtitle">size</h2>
                     <p>Height <br>${pokemon.size['height']} </p>
                     <p>Weight <br>${pokemon.size['weight']} </p>
                     <p>Eggs <br> ${pokemon.egg}</p>
                   </article>
-            <article class="rows">
-            <h2 class="subtitle">Type:</h2>
-            ${pokemon.type.map(elemento => {
-              return `<img  class="icon-type" src="./images/${elemento}.png">`
-              })}
-                </article>
-            <article class=rows>
-              <h2 class="subtitle">Resistant:</h2>
-              ${pokemon.resistant.map(elemento => {
-                return `<img  class="icon-type" src="./images/${elemento}.png">`
-                  })}
+                  <h2 class="subtitle">Resistant:</h2>
+                    <article class=rows>
+                    ${pokemonResistant.join('')}
               </article>
+              <h2 class="subtitle">Weaknesses:</h2>
             <article class=rows>
-            <h2 class="subtitle">Weaknesses:</h2>
-            ${pokemon.weaknesses.map(elemento => {
-              return `<img  class="icon-type" src="./images/${elemento}.png">`
-                })}
+            ${pokemonWeaknesses.join('')}
 
         </article>
 
@@ -191,8 +186,9 @@ const showAllPokemon = (allPokemon) => {
 
         <h2 class="subtitle">Evolution </h2>
         <article class=rows>
-        ${templateNextEvolution ? templateNextEvolution : ''}
-        ${templatePrevEvolutions ? templatePrevEvolutions : ''}
+        ${templateNextEvolution === undefined && templatePrevEvolutions === undefined ? pokemonNotEvolution : ''}
+        ${templateNextEvolution ? templateNextEvolution.join('') : ''}
+        ${templatePrevEvolutions ? templatePrevEvolutions.join(''): ''}
               </article>
               </section>
           </div>
@@ -246,31 +242,38 @@ function sortByArrow() {
   orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
   let data = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
-  showAllPokemon(sortData(data, sortByValue, orderBy));
+  data.length > 0 ?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFount;
 }
 
 
 // Filtrar Data por Tipo
 showTypes.addEventListener('change', () => {
-  typeValue = showTypes.value;
+  sortByValue = selectOrderBy.value;
+  regionValue = showRegion.value;
+  typeSelected = showTypes.value;
+  orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
-  showAllPokemon(filterDataByType(pokemonData, typeValue));
+  let data = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
+  data.length > 0?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFount;
 });
 
 // Filtrar Data por Región
 showRegion.addEventListener('change', () => {
+  sortByValue = selectOrderBy.value;
   regionValue = showRegion.value;
-  typeSelected = document.querySelector('[id="types"]').value;
+  typeSelected = showTypes.value;
+  orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
   let dataRegion = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
-  showAllPokemon(dataRegion);
+  dataRegion.length > 0? showAllPokemon(dataRegion):cardContainer.innerHTML = pokemonNotFount;
+
 });
 
 // Busqueda
 searchInput.addEventListener('input', () => {
   const pokemonSearch = filterDataByName(pokemonData, searchInput.value.toLowerCase());
-  if (pokemonSearch.length == 0) {
-    cardContainer.textContent = 'Pokemon no encontrado';
+  if (pokemonSearch.length === 0) {
+    cardContainer.innerHTML = pokemonNotFount;
   } else {
     cardContainer.innerHTML = '';
     showAllPokemon(pokemonSearch);
