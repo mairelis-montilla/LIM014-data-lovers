@@ -157,33 +157,6 @@ const showAllPokemon = (allPokemon) => {
 
         </article>
 
-        <article class="rows">
-        <table> 
-               
-        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['quick-move'])).length+1}.">QUICK MOVE</td></tr>
-        <tr><td>Nombre  </td>${showTable(attackName(pokemon['quick-move']))}</tr> 
-        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
-        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
-        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
-
-      </table>
-
-      </article>
-
-      <article class="rows">
-      <table> 
-               
-        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['special-attack'])).length+1}.">SPECIAL ATTACK</td></tr>
-        <tr><td>Nombre  </td>${showTable(attackName(pokemon['special-attack']))}</tr> 
-        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['special-attack'], pokemon.type))}</tr>
-        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['special-attack']))}</tr>
-        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['special-attack'], pokemon.type))}</tr>
-
-      </table>
-
-      </article> 
-
-
         <h2 class="subtitle">Evolution </h2>
         <article class=rows>
         ${templateNextEvolution === undefined && templatePrevEvolutions === undefined ? pokemonNotEvolution : ''}
@@ -195,6 +168,26 @@ const showAllPokemon = (allPokemon) => {
         </section >
           </section>
 
+          <article class="rows">
+        <table>
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['quick-move'])).length+1}.">QUICK MOVE</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['quick-move']))}</tr>
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
+
+      </table>
+      </article>
+      <article class="rows">
+      <table>
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['special-attack'])).length+1}.">SPECIAL ATTACK</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['special-attack']))}</tr> 
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['special-attack'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['special-attack']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['special-attack'], pokemon.type))}</tr>
+
+      </table>
+      </article>
       `});
 
 
