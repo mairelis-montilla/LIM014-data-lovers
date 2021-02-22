@@ -1,0 +1,80 @@
+ 
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="module">
+
+    import data from './data/pokemon/pokemon.js';
+    import { countTypes } from './data.js';
+    const pokemonData = data.pokemon;   
+
+    // optimizar la carga haciendo un filtrado que solo contenga los tipos
+    let type = []; 
+    pokemonData.forEach(pokemon =>  
+    type.push(pokemon.type) 
+    ) 
+
+     
+ 
+
+    google.charts.load("current", {
+      packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", {
+          role: "style"
+        }],
+        ["Bug", countTypes(type, 'bug'), "#ffcdb0"],
+        ["Dark", countTypes(type, 'Dark'), "#b3acac"],
+        ["Dragon", countTypes(type, 'Dragon'), "#ff823a"],
+        ["Electric", countTypes(type, 'Electric'), "#f7e366"],
+        ["Fairy", countTypes(type, 'Fairy'), "color: #ffcece"],
+        ["Fighting", countTypes(type, 'Fighting'), "#ff6666"],
+        ["Fire", countTypes(type, 'Fire'), "color: rgb(253, 86, 86)"],
+        ["Flying", countTypes(type, 'Flying'), "#7885FF"],
+        ["Ghost", countTypes(type, 'Ghost'), "#C67DFF"],
+        ["Grass", countTypes(type, 'Grass'), "color: #e5e4e2"],
+        ["Ground", countTypes(type, 'Ground'), "#fa9434"],
+        ["Ice", countTypes(type, 'Ice'), "#2d979e"],
+        ["Normal", countTypes(type, 'Normal'), "#BBAFAF"],
+        ["Poison", countTypes(type, 'Poison'), "#543a63"],
+        ["Psychic", countTypes(type, 'Psychic'), "color: rgb(133, 6, 97)"],
+        ["Rock", countTypes(type, 'Rock'), "color: rgb(227, 170, 102)"],
+        ["Steel", countTypes(type, 'Steel'), "#256A98"],
+        ["Water", countTypes(type, 'Water'), "#6BECF2"]
+
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+        {
+          calc: "stringify",
+          sourceColumn: 1,
+          type: "string",
+          role: "annotation"
+        },
+        2
+      ]);
+
+      var options = {
+        title: "Average of Pokemons by type",
+        width: '100%',
+        height: 550,
+        bar: {
+          groupWidth: "95%"
+        },
+        legend: {
+          position: "none"
+        },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("piechart"));
+      chart.draw(view, options);
+    }
+  </script>  
+ 
+  <div id="chart_wrap">
+    <div id="piechart" ></div>
+</div> 

@@ -3,8 +3,13 @@ import {
   filterDataByName,
   filterDataByRegion,
   sortData,
+  attackName,
+  calculateDps,
+  calculateEps,
+  calculateDmgStab,
 
 } from './data.js';
+
 import data from './data/pokemon/pokemon.js';
 
 
@@ -23,6 +28,8 @@ const modalContainer = document.querySelector('.modal-information');
 //NAVEGACIÓN ENTRE PESTAÑAS
 const listTopPokemon = document.getElementById('listTopPokemon');
 const listHomePokemon = document.getElementById('listHomePokemon');
+const  pokemonNotFount =`<section class="column"><h2 class="slogan">Ups!! pokemon not found</h2>
+<img src="./images/pokemon.gif" alt="pokemon"> </section>`
 
 listHomePokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
@@ -37,18 +44,29 @@ closeModal.addEventListener('click', hideModal);
 function hideModal() {
   modalShow.classList.toggle('hide');
 }
+
 // global filter variables
 let regionValue;
 let typeSelected;
 let orderBy;
 let sortByValue;
-let typeValue;
 
  // MOSTRAR TODOS LOS POKEMONS
+ 
 const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => {
     const container = document.createElement('section');
     container.className = 'card-contrainer ';
+    let pokemonTypes = pokemon.type.map(elemento => {
+      return `<img  class="icon-type" src="./images/${elemento}.png">`
+    });
+    let pokemonResistant = pokemon.resistant.map(elemento => {
+      return `<img  class="icon-type" src="./images/${elemento}.png">`
+        });
+        let pokemonWeaknesses = pokemon.weaknesses.map(elemento => {
+          return `<img  class="icon-type" src="./images/${elemento}.png">`
+            });
+
     cardContainer.appendChild(container).innerHTML = `
     <article>
     <section class="name-card_container">
@@ -62,10 +80,7 @@ const showAllPokemon = (allPokemon) => {
             <p class="p"id="valueCP"> Max-CP  <br> ${pokemon.stats['max-cp']}</p>
           </div>
               <div class="rows">
-                ${pokemon.type.map(elemento => {
-        return `<img  class="icon-type" src="./images/${elemento}.png">`
-      })
-        }
+              ${pokemonTypes.join('')}
               </div>
               <button class="btn-secondary">About</button>
               </article>
@@ -74,6 +89,7 @@ const showAllPokemon = (allPokemon) => {
     const btnModal = container.querySelector('button');
     let templateNextEvolution;
     let templatePrevEvolutions;
+    const pokemonNotEvolution = '<p> I don\'t have evolutions</p>';
 
     if (pokemon.evolution) {
 
@@ -109,9 +125,7 @@ const showAllPokemon = (allPokemon) => {
             <h1 class="subtitle">${pokemon.name}</h1>
                 <p>#${pokemon.num}</p>
                 <span class="rows">
-                ${pokemon.type.map(elemento => {
-                  return `<img  class="icon-type" src="./images/${elemento}.png">`
-                  })}
+                ${pokemonTypes.join('')}
                 </span>
                   <article class="column" >
                     <h2 class="subtitle">Stats </h2>
@@ -135,27 +149,45 @@ const showAllPokemon = (allPokemon) => {
                   </article>
                   <h2 class="subtitle">Resistant:</h2>
                     <article class=rows>
-              ${pokemon.resistant.map(elemento => {
-                return `<img  class="icon-type" src="./images/${elemento}.png">`
-                  })}
+                    ${pokemonResistant.join('')}
               </article>
               <h2 class="subtitle">Weaknesses:</h2>
             <article class=rows>
-            ${pokemon.weaknesses.map(elemento => {
-              return `<img  class="icon-type" src="./images/${elemento}.png">`
-                })}
+            ${pokemonWeaknesses.join('')}
 
         </article>
+
         <h2 class="subtitle">Evolution </h2>
         <article class=rows>
-        ${templateNextEvolution ? templateNextEvolution : ''}
-        ${templatePrevEvolutions ? templatePrevEvolutions : ''}
+        ${templateNextEvolution === undefined && templatePrevEvolutions === undefined ? pokemonNotEvolution : ''}
+        ${templateNextEvolution ? templateNextEvolution.join('') : ''}
+        ${templatePrevEvolutions ? templatePrevEvolutions.join(''): ''}
               </article>
               </section>
           </div>
         </section >
           </section>
 
+          <article class="rows">
+        <table>
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['quick-move'])).length+1}.">QUICK MOVE</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['quick-move']))}</tr>
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
+
+      </table>
+      </article>
+      <article class="rows">
+      <table>
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['special-attack'])).length+1}.">SPECIAL ATTACK</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['special-attack']))}</tr> 
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['special-attack'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['special-attack']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['special-attack'], pokemon.type))}</tr>
+
+      </table>
+      </article>
       `});
 
 
@@ -203,31 +235,38 @@ function sortByArrow() {
   orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
   let data = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
-  showAllPokemon(sortData(data, sortByValue, orderBy));
+  data.length > 0 ?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFount;
 }
 
 
 // Filtrar Data por Tipo
 showTypes.addEventListener('change', () => {
-  typeValue = showTypes.value;
+  sortByValue = selectOrderBy.value;
+  regionValue = showRegion.value;
+  typeSelected = showTypes.value;
+  orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
-  showAllPokemon(filterDataByType(pokemonData, typeValue));
+  let data = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
+  data.length > 0?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFount;
 });
 
 // Filtrar Data por Región
 showRegion.addEventListener('change', () => {
+  sortByValue = selectOrderBy.value;
   regionValue = showRegion.value;
-  typeSelected = document.querySelector('[id="types"]').value;
+  typeSelected = showTypes.value;
+  orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
   let dataRegion = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
-  showAllPokemon(dataRegion);
+  dataRegion.length > 0? showAllPokemon(dataRegion):cardContainer.innerHTML = pokemonNotFount;
+
 });
 
 // Busqueda
 searchInput.addEventListener('input', () => {
   const pokemonSearch = filterDataByName(pokemonData, searchInput.value.toLowerCase());
-  if (pokemonSearch.length == 0) {
-    cardContainer.textContent = 'Pokemon no encontrado';
+  if (pokemonSearch.length === 0) {
+    cardContainer.innerHTML = pokemonNotFount;
   } else {
     cardContainer.innerHTML = '';
     showAllPokemon(pokemonSearch);
@@ -252,4 +291,11 @@ function getPrevEvolution(elemento) {
   }
   evolutions.push(elemento[0]);
   return evolutions.reverse();
+}
+
+function showTable(data) {
+  const table = data.map(elemento => {
+    return `<td>${elemento}</td>`
+  }).join('');
+  return table;
 }
