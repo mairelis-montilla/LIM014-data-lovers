@@ -89,7 +89,7 @@ const showAllPokemon = (allPokemon) => {
           <div class="rows">
             <p class="p" id="valueHP"> Max-HP <br> ${pokemon.stats['max-hp']}</p>
             <p class="p"id="valueCP"> Max-CP <br> ${pokemon.stats['max-cp']}</p>
-            <p class="p">Spawn <br> ${pokemon['spawn-chance']}</p>
+            <p class="p">Spawn <br> ${pokemon['spawn-chance']? pokemon['spawn-chance'] : '0'}</p>
           </div>
               <div class="rows">
                 ${pokemonTypes.join('')}
