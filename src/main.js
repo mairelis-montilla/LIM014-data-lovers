@@ -3,8 +3,13 @@ import {
   filterDataByName,
   filterDataByRegion,
   sortData,
+  attackName,
+  calculateDps,
+  calculateEps,
+  calculateDmgStab,
 
 } from './data.js';
+
 import data from './data/pokemon/pokemon.js';
 
 
@@ -39,6 +44,7 @@ closeModal.addEventListener('click', hideModal);
 function hideModal() {
   modalShow.classList.toggle('hide');
 }
+
 // global filter variables
 let regionValue;
 let typeSelected;
@@ -46,6 +52,7 @@ let orderBy;
 let sortByValue;
 
  // MOSTRAR TODOS LOS POKEMONS
+ 
 const showAllPokemon = (allPokemon) => {
   allPokemon.forEach(pokemon => {
     const container = document.createElement('section');
@@ -82,7 +89,7 @@ const showAllPokemon = (allPokemon) => {
     const btnModal = container.querySelector('button');
     let templateNextEvolution;
     let templatePrevEvolutions;
-    const pokemonNotEvolution = `<p> I don't have evolutions</p>`;
+    const pokemonNotEvolution = '<p> I don\'t have evolutions</p>';
 
     if (pokemon.evolution) {
 
@@ -149,6 +156,34 @@ const showAllPokemon = (allPokemon) => {
             ${pokemonWeaknesses.join('')}
 
         </article>
+
+        <article class="rows">
+        <table> 
+               
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['quick-move'])).length+1}.">QUICK MOVE</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['quick-move']))}</tr> 
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
+
+      </table>
+
+      </article>
+
+      <article class="rows">
+      <table> 
+               
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['special-attack'])).length+1}.">SPECIAL ATTACK</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['special-attack']))}</tr> 
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['special-attack'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['special-attack']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['special-attack'], pokemon.type))}</tr>
+
+      </table>
+
+      </article> 
+
+
         <h2 class="subtitle">Evolution </h2>
         <article class=rows>
         ${templateNextEvolution === undefined && templatePrevEvolutions === undefined ? pokemonNotEvolution : ''}
@@ -263,4 +298,11 @@ function getPrevEvolution(elemento) {
   }
   evolutions.push(elemento[0]);
   return evolutions.reverse();
+}
+
+function showTable(data) {
+  const table = data.map(elemento => {
+    return `<td>${elemento}</td>`
+  }).join('');
+  return table;
 }

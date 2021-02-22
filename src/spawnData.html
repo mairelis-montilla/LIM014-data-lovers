@@ -1,0 +1,79 @@
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+ <script type="module">
+
+   import data from './data/pokemon/pokemon.js';
+   import { countTypesSpawn } from './data.js';
+
+    const pokemonData = data.pokemon;   
+
+    // optimizar la carga haciendo un filtrado que solo contenga los tipos y datos de spawm
+    let type = []; 
+    pokemonData.forEach(pokemon =>     
+    type.push({ 
+      type: pokemon.type, spawn: pokemon["spawn-chance"]})     
+    ) 
+    console.log(type); 
+     
+
+    google.charts.load("current", {
+      packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", {
+          role: "style"
+        }],
+        ["Bug", countTypesSpawn(type, 'bug'), "#ffcdb0"],
+        ["Dark", countTypesSpawn(type, 'Dark'), "#b3acac"],
+        ["Dragon", countTypesSpawn(type, 'Dragon'), "#ff823a"],
+        ["Electric", countTypesSpawn(type, 'Electric'), "#f7e366"],
+        ["Fairy", countTypesSpawn(type, 'Fairy'), "color: #ffcece"],
+        ["Fighting", countTypesSpawn(type, 'Fighting'), "#ff6666"],
+        ["Fire", countTypesSpawn(type, 'Fire'), "color: rgb(253, 86, 86)"],
+        ["Flying", countTypesSpawn(type, 'Flying'), "#7885FF"],
+        ["Ghost", countTypesSpawn(type, 'Ghost'), "#C67DFF"],
+        ["Grass", countTypesSpawn(type, 'Grass'), "color: #e5e4e2"],
+        ["Ground", countTypesSpawn(type, 'Ground'), "#fa9434"],
+        ["Ice", countTypesSpawn(type, 'Ice'), "#2d979e"],
+        ["Normal", countTypesSpawn(type, 'Normal'), "#BBAFAF"],
+        ["Poison", countTypesSpawn(type, 'Poison'), "#543a63"],
+        ["Psychic", countTypesSpawn(type, 'Psychic'), "color: rgb(133, 6, 97)"],
+        ["Rock", countTypesSpawn(type, 'Rock'), "color: rgb(227, 170, 102)"],
+        ["Steel", countTypesSpawn(type, 'Steel'), "#256A98"],
+        ["Water", countTypesSpawn(type, 'Water'), "#6BECF2"]
+
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+        {
+          calc: "stringify",
+          sourceColumn: 1,
+          type: "string",
+          role: "annotation"
+        },
+        2
+      ]);
+
+      var options = {
+        title: "Average of Spawn by Type",
+        width: '100%',
+        height: 500,
+        bar: {
+          groupWidth: "95%"
+        },
+        legend: {
+          position: "none"
+        },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("piechart"));
+      chart.draw(view, options);
+    }
+  </script>
+
+ <div id="chart_wrap">
+   <div id="piechart"></div>
+ </div>

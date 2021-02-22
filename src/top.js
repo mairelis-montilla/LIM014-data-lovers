@@ -1,31 +1,65 @@
 import data from './data/pokemon/pokemon.js';
-import{sortData} from './data.js'
+import {
+  sortData,
+  attackName,
+  calculateDps,
+  calculateEps,
+  calculateDmgStab,
+} from './data.js'
 
 
-const mainContainer= document.getElementById('mainPokemon')
+const cardContainer = document.getElementById('mainPokemon')
 const pokemons = data.pokemon;
 const listPokemonIndex = document.getElementById('listIndexPokemon');
 const listHomePokemon = document.getElementById('listHomePokemon');
 const closeModal = document.querySelector('.closeModal');
 const modalShow = document.getElementById('modal');
+const btnPokemonStats = document.querySelector('#modalPokeType');
+const btnPokemonSpawn = document.querySelector('#modalPokeSpawn');
 const modalContainer = document.querySelector('.modal-information');
-closeModal.addEventListener('click', hideModal);
 
+ 
+// Modal Graphic
+
+btnPokemonStats.addEventListener('click', hideModalStats);
+
+function hideModalStats() {
+  modalShow.classList.toggle('hide');
+  modalContainer.innerHTML = `<iframe style="width:100%; height:580px" src="typeChart.html" title="Stats"></iframe>
+  `;
+}
+
+btnPokemonSpawn.addEventListener('click', hideModalSpawn);
+
+function hideModalSpawn() {
+  modalShow.classList.toggle('hide');
+  modalContainer.innerHTML = `<iframe style="width:100%; height:580px" src="spawnData.html" title="Stats"></iframe>
+  `;
+}
+
+
+// modal pokemon
 function hideModal() {
   modalShow.classList.toggle('hide');
 }
+
+closeModal.addEventListener('click', hideModal);
+
+
 //NAVEGACIÓN ENTRE PESTAÑAS
 listHomePokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
-}); 
-  
+});
+
 
 listPokemonIndex.addEventListener('click', () =>
   window.location.assign('./pokemon.html')
-); 
+);
+
+
 
 const showAllPokemon = (allPokemon) => {
-  
+
   let count = 0;
 
   allPokemon.forEach(pokemon => {
@@ -44,7 +78,7 @@ const showAllPokemon = (allPokemon) => {
             });
 
     container.className = 'card-contrainer ' + pokemon.type[0];
-    mainContainer.appendChild(container).innerHTML = `
+    cardContainer.appendChild(container).innerHTML = `
     <article>
     <section class="name-card_container">
     <img class="image-pokemon" src="${pokemon.img}" alt="${pokemon.name}">
@@ -63,33 +97,33 @@ const showAllPokemon = (allPokemon) => {
               <button class="btn-secondary">About</button>
               </article>
             </section>`;
-            const btnModal = container.querySelector('button');
-    let templateNextEvolution;
-    let templatePrevEvolutions;
+      const btnModal = container.querySelector('button');
+      let templateNextEvolution;
+      let templatePrevEvolutions;
 
-    if (pokemon.evolution) {
+      if (pokemon.evolution) {
 
-      if (pokemon.evolution['next-evolution']) {
+        if (pokemon.evolution['next-evolution']) {
 
-        let nextEvolutions = getNextEvolution(pokemon.evolution['next-evolution']);
-        templateNextEvolution = nextEvolutions.map(elemento => {
-          return `<div><p> ${elemento.name}</p>
+          let nextEvolutions = getNextEvolution(pokemon.evolution['next-evolution']);
+          templateNextEvolution = nextEvolutions.map(elemento => {
+            return `<div><p> ${elemento.name}</p>
           <img  class="image-pokemon" src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png"> <p> Candy Cost: ${elemento['candy-cost']}</p></div>`
-            })
-      }
-      if(pokemon.evolution['prev-evolution']){
+          })
+        }
+        if (pokemon.evolution['prev-evolution']) {
           let prevEvolutions = getPrevEvolution(pokemon.evolution['prev-evolution']);
-          templatePrevEvolutions =prevEvolutions.map(elemento =>{
-          return`<div><p> ${elemento.name}</p>
+          templatePrevEvolutions = prevEvolutions.map(elemento => {
+            return `<div><p> ${elemento.name}</p>
           <img class="image-pokemon"src="https://www.serebii.net/pokemongo/pokemon/${elemento.num}.png">
           <p> Candy Cost: ${elemento['candy-cost']} </p></div>`
           })
+        }
       }
-    }
 
-    btnModal.addEventListener('click',() => {
-      modalShow.classList.toggle('hide');
-      modalContainer.innerHTML = `
+      btnModal.addEventListener('click', () => {
+        modalShow.classList.toggle('hide');
+        modalContainer.innerHTML = `
       <section class="modal-information">
       <section class="rows">
           <div class="column" id="column-small">
@@ -128,7 +162,32 @@ const showAllPokemon = (allPokemon) => {
             <h2 class="subtitle">Weaknesses:</h2>
             ${pokemonWeaknesses.join('')}
 
-        </article>
+        </article>  
+        <article class="rows">
+        <table> 
+               
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['quick-move'])).length+1}.">QUICK MOVE</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['quick-move']))}</tr> 
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
+
+      </table>
+
+      </article>
+
+      <article class="rows">
+      <table> 
+               
+        <tr><td class='tittleAttack' colspan="${(attackName(pokemon['special-attack'])).length+1}.">SPECIAL ATTACK</td></tr>
+        <tr><td>Nombre  </td>${showTable(attackName(pokemon['special-attack']))}</tr> 
+        <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['special-attack'], pokemon.type))}</tr>
+        <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['special-attack']))}</tr>
+        <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['special-attack'], pokemon.type))}</tr>
+
+      </table>
+
+      </article> 
         <h2 class="subtitle">Evolution </h2>
         <article class=rows>
         ${templateNextEvolution ? templateNextEvolution.join(''): ''}
@@ -139,29 +198,86 @@ const showAllPokemon = (allPokemon) => {
         </section >
           </section>
 
-      `});
+      `
+      });
 
-            }
+    }
 
   })
 };
 
 
+// Ordenar
+
+const iconArrow = document.querySelector('[id="iconArrow"]');
+const selectOrderBy = document.querySelector('[id="order"]');
+
+let orderBy;
+let sortByValue;
+
+iconArrow.addEventListener('click', () => {
+  iconArrow.src = toggleImg();
+  iconArrow.value = valueImg();
+  sortByArrow();
+})
+
+function toggleImg() {
+  let imgSRC = iconArrow.src;
+  imgSRC.includes('/data/images/arrowBottom.svg') ?
+    imgSRC = '/data/images/arrowTop.svg' : imgSRC = '/data/images/arrowBottom.svg';
+  return imgSRC;
+}
+
+function valueImg() {
+  let imgValue = iconArrow.value;
+  imgValue.includes('Asc') ? imgValue = 'Desc' : imgValue = 'Asc';
+  return imgValue;
+}
+
+
+// Ordenar Data
+selectOrderBy.addEventListener('change', sortByArrow);
+
+
+
+
+function sortByArrow() {
+  sortByValue = selectOrderBy.value;
+  orderBy = iconArrow.value;
+  cardContainer.innerHTML = '';
+  showAllPokemon(sortData(pokemons, sortByValue, orderBy).reverse());
+}
+
+
+ 
+
 showAllPokemon(sortData(pokemons, 'spawn', 'Desc'));
+
 function getNextEvolution(elemento) {
   let nextEvolution = elemento[0]['next-evolution'];
-  const evolutions =[];
-  if(nextEvolution) {
+  const evolutions = [];
+  if (nextEvolution) {
     evolutions.push(...getNextEvolution(nextEvolution));
   }
   evolutions.push(elemento[0]);
   return evolutions.reverse();
 }
+
+
+
 function getPrevEvolution(elemento) {
   let prevEvolution = elemento[0]['prev-evolution'];
-  const evolutions =[];
-  if(prevEvolution) {
+  const evolutions = [];
+  if (prevEvolution) {
     evolutions.push(...getNextEvolution(prevEvolution));
   }
   evolutions.push(elemento[0]);
-  return evolutions.reverse();}
+  return evolutions.reverse();
+}
+
+function showTable(data) {
+  const table = data.map(elemento => {
+    return `<td>${elemento}</td>`
+  }).join('');
+  return table;
+}
