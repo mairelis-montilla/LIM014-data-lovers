@@ -4,83 +4,164 @@
 ## Definicion del producto
 Los usuarios son jugadores de PokemonGo por medio de esta app queremos brindarles
 un espacio donde podran visualizar todos los pokemones con sus caracteristicas,
-además podran filtrar informacion ya sea por tipo, por top de aparicion, organizarla de más fuerte a menos, alfabeticamente, hacer busqueda por nombre.
+además podran filtrar informacion ya sea por tipo, region por top de aparicion, organizarla de más fuerte a menos, alfabeticamente, hacer busqueda por nombre.
 
 
 ## Historias de Usuario
 
   ### Historia usuario 1:
 **Problema del usuario:**
-+ Yo como maestro pokemon quiero poder ver la Información básica de los pokemons para poder conocer que habilidades tiene
++ Yo como maestro pokemon quiero poder ver la Información de los pokemons para poder conocer los datos basicos de los pokemones tanto en desktop tablet o mobile
 **Criterios de aceptación:**
-+ Que el usuario pueda ver información básica de los
- pokemons (nombre, tipo, etc)
-+  Diseño responsive
++ Que por cada pokemon exista un card.
++ Que el usuario pueda ver información básica de los pokemons nombre, numero, imagen y tipo.
++  Diseño responsive.
+
 **Definicion de Terminado**
-+ Responsive en 3 breackpoints (movile, desktop, tablet)
-+ Utilizar contraste y jeraquia.
++ Responsive en 3 breackpoints (mobile, desktop, tablet).
++ cumplir con los criterios de aceptacion.
+
   ### Historia de usuario 2:
+
+  **Problema del usuario:**
+  + Yo como maestro pokemon quiero ver la información detallada de cada pokemon para  conocer mejor al pokemon y futuros oponentes, sus evoluciones debilidades y fortalezas.
+
+  **Criterios de aceptación:**
+  + Agregar un boton que al hacer click muestre el modal con la informacion
+  + Diseñar modal mostrando la infotmación del pokemon sus medidas, resistencias, debilidades, evoluciones.
+  + Diseño responsive.
+
+  **Definicion de terminado**
++ Responsive en 3 breackpoints (movile, desktop, tablet).
++ cumplir con los criterios de aceptacion.
+
+ ### Historia de usuario 3:
+
 **Problema del usuario:**
-+  Yo como maestro pokemon quiero poder organizar la información por multiplicador para ver quien es más fuerte y quien menos.
+
++ + Yo como usuario quiero poder organizar la información por tipo de Pokemon para poder optimizar mi búsqueda.
+
 **Criterios de aceptación:**
-+ Que el usuario pueda consultar la información de los pokemons por su multiplicador
-+ ordenar de mas fuerte a menos fuerte
-+ ordenar de menos fuerte a mas fuerte
-+ Diseño responsive
-**Definicion de terminado**
-+ Pasar test de la funcion
-+ Resposive en 3 breackpoints
-  ### Historia de usuario 3:
-**Problema del usuario:**
-+  Yo como maestro pokemon quiero  visualizar la información por top de apariciones de Pokemon.
-**Criterios de aceptación:**
-+ mostrar pokemons con mas apariciones.
-+ Top de 10
++ Tener un input tipo selec donde esten los tipos de pokemon para que filtre a seleccionar alguno.
++ solo mostar en pantalla los pokemon que coincidan con el tipo seleccionado por el usuario
 + Diseño responsive.
+
 **Definicion de terminado**
-+ Pasar test de la funcion filtrar por peso.
-+ realizar prueba con usuario y ver si es satisfactoria la experiencia.
-+ Responsive en los 3 principales breackpoint
++ cumplir citerios de aceptacion.
++ Pasar test de la funcion de filtrar por tipo.
++ Resposive en 3 breackpoints.
+
   ### Historia de usuario 4:
+
 **Problema del usuario:**
-+ Yo como usuario quiero poder organizar la información por tipo de Pokemon para poder optimizar mi búsqueda
++ Yo como usuario quiero poder organizar la información por Region de Pokemon para poder optimizar mi búsqueda.
+
 **Criterios de aceptación:**
-+ Que el usuario pueda consultar la información de los pokemons al filtrarlo por tipo.
-+ Que pueda seleccionarlo a través de un Selector de filtros.
-+ Mostrar solo los pokemons que tengan el mismo tipo.
-**Criterios de aceptación:**
-+ Pasar todos los tests de usabilidad
-+ Pasar los tests de node
-+ Tener el visto bueno de los usuarios
-+ Responsive en 3 dispositivos.
-  ### Historia de usuario 5:
-  **Problema de usuario:**
++ Tener un input tipo selec donde esten las regiones para que filtre a seleccionar alguna opcion.
++ Que el usuario pueda consultar la información de los pokemons al filtrarlo por region.
++ Mostrar solo los pokemons que tengan la misma region.
+
+**Definicion de terminado:**
++ cumplir citerios de aceptacion.
++ Pasar test de la funcion de filtrar por tipo.
+
+ ### Historia de usuario 5:
+
+ **Problema de usuario:**
 +  Yo como maestro pokemon quiero poder encontrar un pokemon por su nombre para optimizar mi busqueda.
+
 **Criterios de aceptación**
-+ Agregar un input text donde escriba el nombre del pokemon
-+  Filltrar al pokemon que tenga coincidencia
-+ Si no hay coincidencias mostrar un mensaje de que no existe
++ Agregar un input text donde escriba el nombre del pokemon.
++  Filtrar al pokemon que tenga coincidencia
++ Si no hay coincidencias mostrar un mensaje de que no existe.
+
 **Definicion de Terminado**
-+ Pasar test
++ cumplir  criterios de aceptación.
++ Pasar test de la funcion de filtrar por coincidencia al escribir.
 + Diseño responsive en los 3 principales breackpoint.
+
   ### Historia de usuario 6:
 
 **problemática:**
-+ Yo como maestro pokemon quiero poder ordenar de manera  alfabética los pokemones para hacer una busqueda mas
++ Yo como maestro pokemon quiero poder ordenar alfabeticamente los pokemones para hacer una busqueda más rapida .
+
 **Criterios de aceptación**
-+ Que el usuario pueda seleccionar el orden a través de un selector
-+ Que los pokemons se filtren de la a-Z y de la Z-a
++ Tener un input donde seleccione para ordenar por nombre
++ Al hacer click a la flecha ordene en direccion a la que esta apunte
++ Que los pokemons se filtren de la A-Z y de la Z-A
 
+ **Definicion de Terminado**
++ cumplir  criterios de aceptación.
++ Pasar test de la funcion de ordenar alfabeticamente ya sea ascendente o descendente
++ Diseño responsive en los 3 principales breackpoint.
 
+ ### Historia de usuario 7:
+
+**problemática:**
++ Yo como maestro pokemon quiero poder ordenar por numero(identificador) los pokemones para hacer una busqueda más rapida.
+
+**Criterios de aceptación**
++ Tener un input donde seleccione para ordenar por num
++ Al hacer click a la flecha ordene en direccion a la que esta apunte
++ Que los pokemons se filtren del 251 al 1 y del 1-251.
+
+ **Definicion de Terminado**
++ cumplir  criterios de aceptación.
++ Pasar test de la funcion de ordenar por num ya sea ascendente o descendente
++ Diseño responsive en los 3 principales breackpoint.
+### Historia de usuario 8:
+
+**problemática:**
++ Yo como maestro pokemon quiero poder ordenar por multiplicador(Max-hp, Max-cp) los pokemones para hacer una busqueda más rapida
+
+**Criterios de aceptación**
++ Tener un input donde seleccione para ordenar por Max-cp o Max-hp
++ Al hacer click a la flecha ordene en direccion a la que esta apunte
++ Que los pokemons se filtren de mayor valor y viceversa
+
+ **Definicion de Terminado**
++ cumplir  criterios de aceptación.
++ Pasar test de la funcion de ordenar ya sea asc p desc
++ Diseño responsive en los 3 principales breackpoint.
+### Historia de usuario 9:
+
+**Problema del usuario:**
++  Yo como maestro pokemon quiero  visualizar la información por top de apariciones de Pokemon para saber que es lo mas comun en aparecer y cuales no.
+
+**Criterios de aceptación:**
++ maquetar ventana donde se mostraran el Top de 10 de apariciones
++ cada pokemon debe tener un card
++ mostrar pokemons con mas apariciones.
++ mostrar pokemons con menos apariciones
++ Diseño responsive.
+
+**Definicion de terminado**
++ cumplir con criterios de aceptación
++ realizar prueba con usuario y ver si es satisfactoria la experiencia.
++ Responsive en los 3 principales breackpoint
 ***
+
 ## Prototipos
+**Prototipo de baja fidelidad**
 ![prototipo](./assets/prototipo.jpeg)
+
+**Prototipo de alta fidelidad v1:**
+
 ![prototipo-mobile](./assets/prototipoMobile.png)
 ![prototipo2](./assets/prototipo2.png)
 ![prototipo3](./assets/prototipo3.png)
 ![prototipo4](./assets/prototipo4.png)
 
+**Prototipo de alta fidelidad V2:**
+ + los usuarios nos comentaron que mucho color más el de los pokemones no era armonico que limitaramos la paleta de colores.
+ + cambiar los tipos de un boton a iconografia.
+ + cambiar el numero de la parte superior y colocarlo debajo del nombre ya que el circulo amarillo quitaba atencion al boton de about.
 
+![prototipo5](./assets/prototipo5.png)
+![prototipo6](./assets/prototipo6.png)
+![prototipo7](./assets/prototipo7.png)
+![prototipo8](./assets/prototipo8.png)
+![prototipo9](./assets/prototipo9.png)
 
 ## 2. Resumen del proyecto
 

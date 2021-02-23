@@ -78,7 +78,7 @@ const showAllPokemon = (allPokemon) => {
           return `<img  class="icon-type" src="./images/${elemento}.png">`
             });
 
-    container.className = 'card-contrainer ' + pokemon.type[0];
+    container.className = 'card-contrainer ';
     cardContainer.appendChild(container).innerHTML = `
     <article>
     <section class="name-card_container">
@@ -101,6 +101,7 @@ const showAllPokemon = (allPokemon) => {
       const btnModal = container.querySelector('button');
       let templateNextEvolution;
       let templatePrevEvolutions;
+      const pokemonNotEvolution = '<p> I don\'t have evolutions</p>';
 
       if (pokemon.evolution) {
 
@@ -149,26 +150,35 @@ const showAllPokemon = (allPokemon) => {
             <p> ${pokemon.about}</p>
 
             <section>
+            <h2 class="subtitle">size</h2>
               <article class="rows">
-              <h2 class="subtitle">size</h2>
                     <p>Height <br>${pokemon.size['height']} </p>
                     <p>Weight <br>${pokemon.size['weight']} </p>
                     <p>Eggs <br> ${pokemon.egg}</p>
                   </article>
+                  <h2 class="subtitle">Resistant:</h2>
             <article class=rows>
-              <h2 class="subtitle">Resistant:</h2>
               ${pokemonResistant.join('')}
               </article>
+              <h2 class="subtitle">Weaknesses:</h2>
             <article class=rows>
-            <h2 class="subtitle">Weaknesses:</h2>
             ${pokemonWeaknesses.join('')}
 
-        </article>  
-        <article class="rows">
-        <table> 
-               
+        </article>
+        <h2 class="subtitle">Evolution </h2>
+        <article class=rows>
+        ${templateNextEvolution === undefined && templatePrevEvolutions === undefined ? pokemonNotEvolution : ''}
+        ${templateNextEvolution ? templateNextEvolution.join('') : ''}
+        ${templatePrevEvolutions ? templatePrevEvolutions.join(''): ''}
+              </article>
+              </section>
+          </div>
+        </section >
+          </section>
+          <article class="rows">
+        <table>
         <tr><td class='tittleAttack' colspan="${(attackName(pokemon['quick-move'])).length+1}.">QUICK MOVE</td></tr>
-        <tr><td>Nombre  </td>${showTable(attackName(pokemon['quick-move']))}</tr> 
+        <tr><td>Name  </td>${showTable(attackName(pokemon['quick-move']))}</tr> 
         <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
         <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
         <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
@@ -178,26 +188,17 @@ const showAllPokemon = (allPokemon) => {
       </article>
 
       <article class="rows">
-      <table> 
-               
+      <table>
+
         <tr><td class='tittleAttack' colspan="${(attackName(pokemon['special-attack'])).length+1}.">SPECIAL ATTACK</td></tr>
-        <tr><td>Nombre  </td>${showTable(attackName(pokemon['special-attack']))}</tr> 
+        <tr><td>Name  </td>${showTable(attackName(pokemon['special-attack']))}</tr> 
         <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['special-attack'], pokemon.type))}</tr>
         <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['special-attack']))}</tr>
         <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['special-attack'], pokemon.type))}</tr>
 
       </table>
-
-      </article> 
-        <h2 class="subtitle">Evolution </h2>
-        <article class=rows>
-        ${templateNextEvolution ? templateNextEvolution.join(''): ''}
-        ${templatePrevEvolutions ? templatePrevEvolutions.join('') : ''}
-              </article>
-              </section>
-          </div>
-        </section >
-          </section>
+      </article>
+  
 
       `
       });
