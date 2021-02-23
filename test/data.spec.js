@@ -424,3 +424,100 @@ describe('Order data by hp test', () => {
     expect(sortData(data, condition, sortBy)).toEqual(result);
   })
 });
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+
+describe('Order data by hp test', () => {
+  // prueba 1 
+  it('is a function', () => {
+    expect(typeof sortData).toBe('function');
+  });
+  // prueba 2 
+  it('order by max-hp asc to desc', () => {
+    const data = [{
+        stats: {
+          'max-hp': 30,
+
+        }
+      },
+      {
+        stats: {
+          'max-hp': 10,
+
+        }
+      },
+      {
+        stats: {
+          'max-hp': 20,
+
+        }
+      }
+    ];
+    const result = [{
+        stats: {
+          'max-hp': 10,
+        }
+      },
+      {
+        stats: {
+          'max-hp': 20,
+        }
+      },
+      {
+        stats: {
+          'max-hp': 30,
+        }
+      }
+    ];
+    const condition = 'hp';
+    const sortBy = 'Asc';
+    expect(sortData(data, condition, sortBy)).toEqual(result);
+  })
+  // prueba 3
+  it('order by max-hp desc to asc', () => {
+    const data = [{
+        stats: {
+          'max-hp': 30,
+
+        }
+      },
+      {
+        stats: {
+          'max-hp': 10,
+
+        }
+      },
+      {
+        stats: {
+          'max-hp': 20,
+
+        }
+      }
+    ];
+    const result = [{
+        stats: {
+          'max-hp': 30,
+
+        }
+      },
+      {
+        stats: {
+          'max-hp': 20,
+
+        }
+      },
+      {
+        stats: {
+          'max-hp': 10,
+        }
+      }
+    ];
+    
+    const condition = 'hp';
+    const sortBy = 'Dsc';
+    expect(sortData(data, condition, sortBy)).toEqual(result);
+  })
+});
+
