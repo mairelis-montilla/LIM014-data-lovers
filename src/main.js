@@ -220,8 +220,8 @@ iconArrow.addEventListener('click', () => {
 
 function toggleImg() {
   let imgSRC = iconArrow.src;
-  imgSRC.includes('/data/images/arrowBottom.svg') ?
-  imgSRC = '/data/images/arrowTop.svg' : imgSRC = '/data/images/arrowBottom.svg';
+  imgSRC.includes('/images/arrowBottom.svg') ?
+  imgSRC = '/images/arrowTop.svg' : imgSRC = '/images/arrowBottom.svg';
   return imgSRC;
 }
 
