@@ -208,27 +208,27 @@ const showAllPokemon = (allPokemon) => {
 // PARA MOSTRAR TODOS LOS POKEMONS AL INICIO //
 showAllPokemon(pokemonData);
 ///////////////////////////////////////////////
-
-// Order
-iconArrow.addEventListener('click', () => {
-  iconArrow.src = toggleImg();
-  iconArrow.value = valueImg();
-  sortByArrow();
-})
+// Order 
 
 function toggleImg() {
   let imgSRC = iconArrow.src;
-  imgSRC.includes('./images/arrowBottom.svg') ?
-  imgSRC = './images/arrowTop.svg' : imgSRC = './images/arrowBottom.svg';
+  const url = imgSRC.substring(imgSRC.length-23); 
+  url.includes('/images/arrowBottom.svg') ? 
+  imgSRC = '/images/arrowTop.svg' : imgSRC = '/images/arrowBottom.svg'; 
   return imgSRC;
 }
 
 function valueImg() {
   let imgValue = iconArrow.value;
-  imgValue.includes('Asc') ? imgValue = 'Desc' : imgValue = 'Asc';
+  imgValue.includes('Asc') ? imgValue = 'Desc' : imgValue = 'Asc'; 
   return imgValue;
 }
 
+iconArrow.addEventListener('click', () => {
+  iconArrow.src = toggleImg(); 
+  iconArrow.value = valueImg(); 
+  sortByArrow();
+})
 
 // Ordenar Data
 selectOrderBy.addEventListener('change', sortByArrow);
