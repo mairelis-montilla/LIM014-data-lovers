@@ -170,8 +170,12 @@ body{
 }
 
 .slogan{
-  font-size:4rem;
+  margin-bottom:20px;
+
+  font-size:3.2rem;
   color: white;
+  text-align: center;
+
 }
 .btnPrimary{
   width: 250px;
@@ -326,6 +330,13 @@ table  {
   border: 2px solid black;
   padding: 0px;
 }
+
+
+.pikaIMG {
+  width: 580px;
+  
+}
+
 /* BREAKPOINS MEDIA RESPONSIVE*/
 @media screen and (max-width: 768px)  {
 
@@ -366,7 +377,8 @@ table  {
     width: 36vw;
   }
   .slogan{
-    font-size: 40px;
+    margin-bottom:20px;
+    font-size: 25px;
   }
   .btnPrimary{
     height: 50px;
@@ -389,6 +401,12 @@ table  {
 .card-contrainer{
   height: 310px;
   width: 240px;
+} 
+
+
+.pikaIMG {
+  width: 350px;
+  
 }
 
 .search-container{
@@ -412,6 +430,15 @@ table  {
   margin: 3px auto;
   padding: 0;
 }
+
+
+.slogan{
+  margin-bottom:20px;
+
+  font-size: 18px;
+    text-align: center;
+}
+
 .modal-container{
   margin: 0;
   padding: 0;
@@ -441,6 +468,12 @@ p{
 }}
 
 @media screen and (max-width: 320px) {
+
+  
+.pikaIMG {
+  width: 280px;
+  
+}
   .input-search {
     width: 38vw;
     height: 4vh;
@@ -449,6 +482,15 @@ p{
 }
 #iconArrow{
   height: 2rem;
+}
+
+
+.slogan{
+  margin-bottom:20px;
+
+  font-size: 20px;
+  text-align: center;
+
 }
 
 #chart_wrap {
@@ -463,8 +505,7 @@ p{
   top: 0;
   left: 0;
   width:100%;
-  overflow:hidden;
-
+  overflow:hidden; 
   height:auto;
 }
 

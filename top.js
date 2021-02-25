@@ -17,6 +17,7 @@ const modalShow = document.getElementById('modal');
 const btnPokemonStats = document.querySelector('#modalPokeType');
 const btnPokemonSpawn = document.querySelector('#modalPokeSpawn');
 const modalContainer = document.querySelector('.modal-information');
+const logoPokemon = document.getElementsByClassName('logo')[0];
 
  
 // Modal Graphic
@@ -25,7 +26,7 @@ btnPokemonStats.addEventListener('click', hideModalStats);
 
 function hideModalStats() {
   modalShow.classList.toggle('hide');
-  modalContainer.innerHTML = `<iframe style="width:100%; height:580px" src="typeChart.html" title="Stats"></iframe>
+  modalContainer.innerHTML = `<iframe style="width:100%; height:540px" src="typeChart.html" title="Stats"></iframe>
   `;
 }
 
@@ -46,7 +47,11 @@ function hideModal() {
 closeModal.addEventListener('click', hideModal);
 
 
+
 //NAVEGACIÓN ENTRE PESTAÑAS
+logoPokemon.addEventListener('click', () => {
+  window.location.assign('./index.html');
+});
 listHomePokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
 });
@@ -63,6 +68,7 @@ const showAllPokemon = (allPokemon) => {
   let count = 0;
 
   allPokemon.forEach(pokemon => {
+    
   count++;
 
   if (count < 11 ) {
@@ -224,8 +230,8 @@ iconArrow.addEventListener('click', () => {
 
 function toggleImg() {
   let imgSRC = iconArrow.src;
-  imgSRC.includes('/data/images/arrowBottom.svg') ?
-    imgSRC = '/data/images/arrowTop.svg' : imgSRC = '/data/images/arrowBottom.svg';
+  imgSRC.includes('/images/arrowBottom.svg') ?
+    imgSRC = '/images/arrowTop.svg' : imgSRC = '/images/arrowBottom.svg';
   return imgSRC;
 }
 
@@ -282,3 +288,4 @@ function showTable(data) {
   }).join('');
   return table;
 }
+ 
