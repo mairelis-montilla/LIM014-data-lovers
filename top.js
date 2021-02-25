@@ -228,10 +228,11 @@ iconArrow.addEventListener('click', () => {
   sortByArrow();
 })
 
+
 function toggleImg() {
-  let imgSRC = iconArrow.src;
-  imgSRC.includes('./images/arrowBottom.svg') ?
-    imgSRC = './images/arrowTop.svg' : imgSRC = './images/arrowBottom.svg';
+  let imgSRC = iconArrow.src; 
+  imgSRC.includes('/images/arrowBottom.svg') ? 
+  imgSRC = '/images/arrowTop.svg' : imgSRC = '/images/arrowBottom.svg'; 
   return imgSRC;
 }
 
