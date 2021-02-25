@@ -6,15 +6,7 @@ export const filterDataByType = (data, condition) => {
     return data.filter(dataFilter => dataFilter.type.includes(condition));
   }
 };
-
-// FILTRAR LOS DATOS POR NOMBRE
-export const filterDataByName = (data, condition) => {
-  if (condition === 'all') {
-    return data;
-  } else {
-    return data.filter(dataFilter => dataFilter.name.includes(condition))
-  }
-};
+ 
 
 // FILTRAR LOS DATOS POR REGIÓN
 export const filterDataByRegion = (data, condition) => {
@@ -23,12 +15,15 @@ export const filterDataByRegion = (data, condition) => {
   } else {
     return data.filter(dataFilter => dataFilter.generation['name'].includes(condition))
   }
-};
-//FILTRAR DATOS POR NUMERO
-export const filterDataByNum = (data, condition) => {
-  return data.filter(dataFilter => condition.includes(parseInt(dataFilter.num)))
 }; 
   
+
+
+// FILTRAR LOS DATOS POR NOMBRE - BÚSQUEDA
+export const filterDataByName = (data, condition) => {
+  return data.filter(dataFilter => dataFilter.name.includes(condition))
+};
+
 
 
 export const sortData = (data, sortBy, sortOrder) => {

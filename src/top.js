@@ -17,6 +17,7 @@ const modalShow = document.getElementById('modal');
 const btnPokemonStats = document.querySelector('#modalPokeType');
 const btnPokemonSpawn = document.querySelector('#modalPokeSpawn');
 const modalContainer = document.querySelector('.modal-information');
+const logoPokemon = document.getElementsByClassName('logo')[0];
 
  
 // Modal Graphic
@@ -46,7 +47,11 @@ function hideModal() {
 closeModal.addEventListener('click', hideModal);
 
 
+
 //NAVEGACIÓN ENTRE PESTAÑAS
+logoPokemon.addEventListener('click', () => {
+  window.location.assign('./index.html');
+});
 listHomePokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
 });
@@ -283,3 +288,4 @@ function showTable(data) {
   }).join('');
   return table;
 }
+ 

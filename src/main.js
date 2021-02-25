@@ -26,11 +26,15 @@ const modalShow = document.getElementById('modal');
 const modalContainer = document.querySelector('.modal-information');
 
 //NAVEGACIÓN ENTRE PESTAÑAS
+const logoPokemon = document.getElementsByClassName('logo')[0];
 const listTopPokemon = document.getElementById('listTopPokemon');
 const listHomePokemon = document.getElementById('listHomePokemon');
-const  pokemonNotFount =`<section class="column"><h2 class="slogan">Ups!! pokemon not found</h2>
-<img src="./images/pokemon.gif" alt="pokemon"> </section>`
+const  pokemonNotFound =`<section class="column"><h2 class="slogan">Pika pika, pokemon not found </h2>
+<img class="pikaIMG" src="./images/pokemon.gif" alt="pokemon"> </section>`
 
+logoPokemon.addEventListener('click', () => {
+  window.location.assign('./index.html');
+});
 listHomePokemon.addEventListener('click', () => {
   window.location.assign('./index.html');
 });
@@ -171,11 +175,11 @@ const showAllPokemon = (allPokemon) => {
           <article class="rows">
         <table>
         <tr><td class='tittleAttack' colspan="${(attackName(pokemon['quick-move'])).length+1}.">QUICK MOVE</td></tr>
-        <tr><td>Name </td>${showTable(attackName(pokemon['quick-move']))}</tr>
+        <tr><td>Name </td>${showTable(attackName(pokemon['quick-move']))   }</tr>
         <tr><td>DPS  </td> ${showTable(calculateDps(pokemon['quick-move'], pokemon.type))}</tr>
         <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['quick-move']))}</tr>
         <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['quick-move'], pokemon.type))}</tr>
-
+   
       </table>
       </article>
       <article class="rows">
@@ -186,6 +190,7 @@ const showAllPokemon = (allPokemon) => {
         <tr><td>EPS  </td> ${showTable(calculateEps(pokemon['special-attack']))}</tr>
         <tr><td>STAB  </td> ${showTable(calculateDmgStab(pokemon['special-attack'], pokemon.type))}</tr>
 
+       
       </table>
       </article>
       `});
@@ -235,7 +240,7 @@ function sortByArrow() {
   orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
   let data = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
-  data.length > 0 ?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFount;
+  data.length > 0 ?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFound;
 }
 
 
@@ -247,7 +252,7 @@ showTypes.addEventListener('change', () => {
   orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
   let data = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
-  data.length > 0?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFount;
+  data.length > 0?showAllPokemon(sortData(data, sortByValue, orderBy)):cardContainer.innerHTML = pokemonNotFound;
 });
 
 // Filtrar Data por Región
@@ -258,7 +263,7 @@ showRegion.addEventListener('change', () => {
   orderBy = iconArrow.value;
   cardContainer.innerHTML = '';
   let dataRegion = filterDataByRegion(filterDataByType(pokemonData, typeSelected), regionValue);
-  dataRegion.length > 0? showAllPokemon(dataRegion):cardContainer.innerHTML = pokemonNotFount;
+  dataRegion.length > 0? showAllPokemon(dataRegion):cardContainer.innerHTML = pokemonNotFound;
 
 });
 
@@ -266,7 +271,7 @@ showRegion.addEventListener('change', () => {
 searchInput.addEventListener('input', () => {
   const pokemonSearch = filterDataByName(pokemonData, searchInput.value.toLowerCase());
   if (pokemonSearch.length === 0) {
-    cardContainer.innerHTML = pokemonNotFount;
+    cardContainer.innerHTML = pokemonNotFound;
   } else {
     cardContainer.innerHTML = '';
     showAllPokemon(pokemonSearch);
