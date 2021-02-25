@@ -214,7 +214,7 @@ function toggleImg() {
   let imgSRC = iconArrow.src;
   const url = imgSRC.substring(imgSRC.length-23); 
   url.includes('/images/arrowBottom.svg') ? 
-  imgSRC = '/images/arrowTop.svg' : imgSRC = '/images/arrowBottom.svg'; 
+  imgSRC = './images/arrowTop.svg' : imgSRC = './images/arrowBottom.svg'; 
   return imgSRC;
 }
 
