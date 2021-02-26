@@ -67,6 +67,7 @@ export const sortData = (data, sortBy, sortOrder) => {
       return data.sort((a, b) => b.stats['max-cp'] - a.stats['max-cp']);
     }
   } 
+  
   // MOSTRAR LOS DATOS POR ORDEN DE HP
   else if (sortBy === 'hp') {
     if (sortOrder === 'Asc') {
